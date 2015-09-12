@@ -1,6 +1,4 @@
-package us.mcmagic.mysterycrates.utils;
-
-import us.mcmagic.mysterycrates.CrateLoot;
+package us.mcmagic.mysterycrates.util;
 
 import java.util.HashMap;
 import java.util.concurrent.ThreadLocalRandom;

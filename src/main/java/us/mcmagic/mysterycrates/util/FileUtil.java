@@ -1,4 +1,4 @@
-package us.mcmagic.mysterycrates.utils;
+package us.mcmagic.mysterycrates.util;
 
 public class FileUtil {
 
