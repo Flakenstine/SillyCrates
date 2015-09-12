@@ -1,0 +1,7 @@
+name: MysteryCrates
+author: Marinated
+version: 1.0.0
+main: us.mcmagic.mysterycrates.CratesPlugin
+
+commands:
+  crate:
