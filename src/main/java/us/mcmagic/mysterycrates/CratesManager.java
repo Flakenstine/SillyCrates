@@ -19,10 +19,10 @@ import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
-import us.mcmagic.mysterycrates.utils.ParticleEffect;
-import us.mcmagic.mysterycrates.utils.RandomPlus;
-import us.mcmagic.mysterycrates.utils.RandomUtils;
-import us.mcmagic.mysterycrates.utils.WeightedList;
+import us.mcmagic.mysterycrates.util.FileUtil;
+import us.mcmagic.mysterycrates.util.ParticleEffect;
+import us.mcmagic.mysterycrates.util.RandomUtils;
+import us.mcmagic.mysterycrates.util.WeightedList;
 
 import java.util.*;
 
@@ -181,14 +181,14 @@ public class CratesManager implements Listener {
         if (cooldownEnabled) {
             cooldown.put(c.getOwnerUUID(), System.currentTimeMillis());
         }
-
-        //TODO: Save location to file config.yml
+        FileUtil.registerCrate(c);
     }
 
     public void unregister(Crate c) {
         SimpleHolograms.getHologramManager().removeHologram(c.getHologramID().toString(), true);
         c.getBlock().setType(Material.AIR);
         crates.remove(c);
+        FileUtil.removeCrate(c);
     }
 
     public HashSet<Crate> getCrates() {
@@ -227,7 +227,8 @@ public class CratesManager implements Listener {
                 event.setCancelled(true);
                 return;
             }
-            Crate c = new Crate(event.getPlayer().getUniqueId(), UUID.randomUUID(), event.getBlock().getLocation(), ParticleEffect.fromName("enchantmenttable"));
+            UUID id = UUID.randomUUID();
+            Crate c = new Crate(id.toString(), event.getPlayer().getUniqueId(), id, event.getBlock().getLocation(), ParticleEffect.fromName("enchantmenttable"));
             SimpleHolograms.getHologramManager().createHologram(c.getCenter().add(0, -.5, 0), c.getHologramID().toString(), Crate.NAME);
             register(c);
         } else if (event.getItemInHand().isSimilar(new ItemStack(Material.CHEST)) || event.getItemInHand().isSimilar(new ItemStack(Material.HOPPER))) {

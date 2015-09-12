@@ -2,12 +2,8 @@ package us.mcmagic.mysterycrates;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.SkullType;
 import org.bukkit.block.Block;
-import org.bukkit.block.BlockState;
-import org.bukkit.material.Chest;
-import org.bukkit.block.Skull;
-import us.mcmagic.mysterycrates.utils.ParticleEffect;
+import us.mcmagic.mysterycrates.util.ParticleEffect;
 
 import java.util.UUID;
 
@@ -16,12 +12,14 @@ public class Crate {
     public static final Material TYPE = Material.CHEST;
     public static final String NAME = CratesManager.colorize("&6&lSteve Co. Supply Crate");
 
+    private String id;
     private Block block;
     private UUID owner;
     private UUID hologramID;
     private ParticleEffect effect;
 
-    public Crate(UUID owner, UUID hologramID, Location loc, ParticleEffect effect) {
+    public Crate(String id, UUID owner, UUID hologramID, Location loc, ParticleEffect effect) {
+        this.id = id;
         this.owner = owner;
         this.hologramID = hologramID;
         this.block = loc.getBlock();
@@ -42,6 +40,10 @@ public class Crate {
 
     public Location getCenter() {
         return block.getLocation().add(0.5, 0.5, 0.5);
+    }
+
+    public String getId() {
+        return id;
     }
 
     public ParticleEffect getEffect() {

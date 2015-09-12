@@ -1,5 +1,6 @@
 package us.mcmagic.mysterycrates;
 
+import me.giinger.sh.SimpleHolograms;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -9,8 +10,9 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
-import us.mcmagic.mysterycrates.utils.FileUtil;
-import us.mcmagic.mysterycrates.utils.Glow;
+import org.yaml.snakeyaml.Yaml;
+import us.mcmagic.mysterycrates.util.FileUtil;
+import us.mcmagic.mysterycrates.util.Glow;
 
 import java.io.File;
 import java.lang.reflect.Field;
@@ -20,7 +22,8 @@ public final class CratesPlugin extends JavaPlugin {
     private static CratesPlugin instance;
     private static CratesManager manager;
     private static ItemStack crate;
-    public static FileConfiguration config = YamlConfiguration.loadConfiguration(new File("/plugins/MysteryCrates/config.yml"));
+    public static File configFile = new File("plugins/MysteryCrates/config.yml");
+    public static FileConfiguration config = YamlConfiguration.loadConfiguration(configFile);
 
     @Override
     public void onEnable() {
@@ -32,10 +35,16 @@ public final class CratesPlugin extends JavaPlugin {
         manager = new CratesManager();
         getCommand("crate").setExecutor(new CrateCommand());
         crate = registerItem();
+
+        FileUtil.loadCrates();
     }
 
     @Override
-    public void onDisable() { }
+    public void onDisable() {
+        for (Crate crate : manager.getCrates()) {
+            SimpleHolograms.getHologramManager().removeHologram(crate.getHologramID().toString(), false);
+        }
+    }
 
     private void registerGlow() {
         try {
@@ -71,6 +80,13 @@ public final class CratesPlugin extends JavaPlugin {
 
     public CratesManager getManager() {
         return manager;
+    }
+
+    private void reload() {
+        this.reloadConfig();
+        config = YamlConfiguration.loadConfiguration(configFile);
+        this.manager = new CratesManager();
+        FileUtil.loadCrates();
     }
 
     public static String getStringFromLocation(Location loc) {
