@@ -194,12 +194,10 @@ public class CratesManager implements Listener {
 
     public void populate() {
         ConfigurationSection root = CratesPlugin.config.getConfigurationSection("crates");
-        System.out.println(root.getKeys(false).size());
         Iterator i = root.getKeys(false).iterator();
         while (i.hasNext()) {
             String name = (String) i.next();
             ConfigurationSection nextSection = root.getConfigurationSection(name);
-            System.out.println("Loaded crate");
             Location location  = CratesPlugin.getLocationFromString(nextSection.getString("location"));
             UUID owner = UUID.fromString(nextSection.getString("owner"));
             UUID hologram = UUID.fromString(name);
