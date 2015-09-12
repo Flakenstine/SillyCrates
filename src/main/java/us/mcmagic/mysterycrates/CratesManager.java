@@ -10,6 +10,7 @@ import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -191,6 +192,23 @@ public class CratesManager implements Listener {
         FileUtil.removeCrate(c);
     }
 
+    public void populate() {
+        ConfigurationSection root = CratesPlugin.config.getConfigurationSection("crates");
+        System.out.println(root.getKeys(false).size());
+        Iterator i = root.getKeys(false).iterator();
+        while (i.hasNext()) {
+            String name = (String) i.next();
+            ConfigurationSection nextSection = root.getConfigurationSection(name);
+            System.out.println("Loaded crate");
+            Location location  = CratesPlugin.getLocationFromString(nextSection.getString("location"));
+            UUID owner = UUID.fromString(nextSection.getString("owner"));
+            UUID hologram = UUID.fromString(name);
+            ParticleEffect effect = ParticleEffect.fromName(nextSection.getString("particle"));
+            Crate c = new Crate(name, owner, hologram, location, effect);
+            register(c);
+        }
+    }
+
     public HashSet<Crate> getCrates() {
         return crates;
     }
@@ -269,11 +287,6 @@ public class CratesManager implements Listener {
         CrateLoot cl = loot.get();
         unregister(event.getCrate());
         player.getInventory().addItem(cl.getStack());
-
-        if (cl.getRarity().equals(CrateLoot.Rarity.LEGENDARY)) {
-            player.playSound(player.getLocation(), Sound.ENDERDRAGON_DEATH, 100, 2);
-        }
-
         player.updateInventory();
         player.sendMessage(cl.getFoundMessage());
     }

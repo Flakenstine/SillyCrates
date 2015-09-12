@@ -10,7 +10,6 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.yaml.snakeyaml.Yaml;
 import us.mcmagic.mysterycrates.util.FileUtil;
 import us.mcmagic.mysterycrates.util.Glow;
 
@@ -33,10 +32,10 @@ public final class CratesPlugin extends JavaPlugin {
         FileUtil.setupConfig();
 
         manager = new CratesManager();
+        manager.populate();
         getCommand("crate").setExecutor(new CrateCommand());
         crate = registerItem();
 
-        FileUtil.loadCrates();
     }
 
     @Override
@@ -86,7 +85,7 @@ public final class CratesPlugin extends JavaPlugin {
         this.reloadConfig();
         config = YamlConfiguration.loadConfiguration(configFile);
         this.manager = new CratesManager();
-        FileUtil.loadCrates();
+        this.manager.populate();
     }
 
     public static String getStringFromLocation(Location loc) {
