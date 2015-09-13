@@ -5,7 +5,7 @@ import org.bukkit.Material;
 
 public class RandomPlus {
 
-    static java.util.Random rn = new java.util.Random();
+    static final java.util.Random rn = new java.util.Random();
 
     public static int between(int minimum, int maximum) {
         if (maximum < minimum) {

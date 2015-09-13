@@ -6,7 +6,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class WeightedList<K> extends HashMap<K, Integer> {
 
     private int total;
-    private static ThreadLocalRandom rand = ThreadLocalRandom.current();
+    private static final ThreadLocalRandom rand = ThreadLocalRandom.current();
 
     @Override
     public Integer put(K a, Integer b) {

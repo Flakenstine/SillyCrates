@@ -11,8 +11,8 @@ import java.util.UUID;
 public class CrateOpenEvent extends Event implements Cancellable {
 
     private static final HandlerList handlers = new HandlerList();
-    private UUID uuid;
-    private Crate crate;
+    private final UUID uuid;
+    private final Crate crate;
     private boolean cancelled;
 
     public CrateOpenEvent(Crate crate, UUID opener) {

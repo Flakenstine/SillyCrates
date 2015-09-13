@@ -3,7 +3,6 @@ package us.mcmagic.mysterycrates;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.material.MaterialData;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -17,8 +16,8 @@ public class CrateLoot {
         RARE(50, ChatColor.DARK_PURPLE + "Rare"),
         ULTRA_RARE(25, "Ultra Rare"),
         LEGENDARY(10, "Legendary");
-        private int weight;
-        private String label;
+        private final int weight;
+        private final String label;
         Rarity(int weight, String label) {
             this.weight = weight;
             this.label = label;
@@ -31,11 +30,12 @@ public class CrateLoot {
         }
     }
 
-    private Material material;
-    private int min, max;
-    private Rarity rarity;
+    private final Material material;
+    private final int min;
+    private final int max;
+    private final Rarity rarity;
     private byte data;
-    private String name;
+    private final String name;
     private int lastStackAmount;
 
     public CrateLoot(Rarity rarity, Material type, int min, int max) {
@@ -78,8 +78,7 @@ public class CrateLoot {
     }
 
     public ItemStack getStack() {
-        ItemStack stack = new ItemStack(material, generateStackAmount(min, max), data);
-        return stack;
+        return new ItemStack(material, generateStackAmount(min, max), data);
     }
 
     public String getFoundMessage() {

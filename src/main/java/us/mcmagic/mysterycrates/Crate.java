@@ -12,11 +12,11 @@ public class Crate {
     public static final Material TYPE = Material.CHEST;
     public static final String NAME = CratesManager.colorize("&6&lSteve Co. Supply Crate");
 
-    private String id;
-    private Block block;
-    private UUID owner;
-    private UUID hologramID;
-    private ParticleEffect effect;
+    private final String id;
+    private final Block block;
+    private final UUID owner;
+    private final UUID hologramID;
+    private final ParticleEffect effect;
 
     public Crate(String id, UUID owner, UUID hologramID, Location loc, ParticleEffect effect) {
         this.id = id;

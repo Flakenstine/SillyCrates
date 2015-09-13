@@ -29,12 +29,12 @@ import java.util.*;
 
 public class CratesManager implements Listener {
 
-    private boolean cooldownEnabled = false;
-    private int cooldownTimer = 5;
-    private HashMap<UUID, Long> cooldown = new HashMap<>();
-    private HashSet<Crate> crates = new HashSet<>();
+    private final boolean cooldownEnabled = false;
+    private final int cooldownTimer = 5;
+    private final HashMap<UUID, Long> cooldown = new HashMap<>();
+    private final HashSet<Crate> crates = new HashSet<>();
 
-    private static WeightedList<CrateLoot> loot = new WeightedList<CrateLoot>() {{
+    private static final WeightedList<CrateLoot> loot = new WeightedList<CrateLoot>() {{
 //        put(new CrateLoot("Stone", CrateLoot.Rarity.COMMON, Material.STONE, 1, 32), CrateLoot.Rarity.COMMON.getWeight());
 //        put(new CrateLoot("Polished Granite", CrateLoot.Rarity.COMMON, Material.STONE, (byte) 0x2, 1, 32), CrateLoot.Rarity.COMMON.getWeight());
 //        put(new CrateLoot("Polished Andesite", CrateLoot.Rarity.COMMON, Material.STONE, (byte) 0x6,  1, 32), CrateLoot.Rarity.COMMON.getWeight());
@@ -159,12 +159,13 @@ public class CratesManager implements Listener {
         Bukkit.getScheduler().scheduleSyncRepeatingTask(CratesPlugin.getInstance(), new Runnable() {
             @Override
             public void run() {
+                //noinspection unchecked
                 for (Crate crate : (HashSet<Crate>) crates.clone()) {
                     drawCuboidEdges(crate.getEffect(), 0.1, crate.getBlock().getLocation(), new Vector(0D, 0D, 0D), new Vector(1D, 1D, 1D));
                 }
 
                 if (cooldownEnabled) {
-                    for (UUID uuid : new HashSet<UUID>(cooldown.keySet())) {
+                    for (UUID uuid : new HashSet<>(cooldown.keySet())) {
                         int elapsed = (int) ((System.currentTimeMillis() - cooldown.get(uuid)) / 1000);
                         if (elapsed >= cooldownTimer) {
                             if (Bukkit.getPlayer(uuid) == null) continue;
@@ -194,11 +195,10 @@ public class CratesManager implements Listener {
 
     public void populate() {
         ConfigurationSection root = CratesPlugin.config.getConfigurationSection("crates");
-        Iterator i = root.getKeys(false).iterator();
-        while (i.hasNext()) {
-            String name = (String) i.next();
+        for (Object section : root.getKeys(false)) {
+            String name = (String) section;
             ConfigurationSection nextSection = root.getConfigurationSection(name);
-            Location location  = CratesPlugin.getLocationFromString(nextSection.getString("location"));
+            Location location = CratesPlugin.getLocationFromString(nextSection.getString("location"));
             UUID owner = UUID.fromString(nextSection.getString("owner"));
             UUID hologram = UUID.fromString(name);
             ParticleEffect effect = ParticleEffect.fromName(nextSection.getString("particle"));
@@ -260,6 +260,7 @@ public class CratesManager implements Listener {
         if (event.getClickedBlock() == null) return;
         if (event.getClickedBlock().getType() == Crate.TYPE) {
             Player p = event.getPlayer();
+            //noinspection unchecked
             for (final Crate crate : (HashSet<Crate>) crates.clone()) {
                 if (compareBlockLocation(event.getClickedBlock().getLocation(), crate.getBlock().getLocation())) {
                     if (!p.getUniqueId().equals(crate.getOwnerUUID())) {
@@ -295,7 +296,6 @@ public class CratesManager implements Listener {
             for (Crate c : crates) {
                 if (compareBlockLocation(b.getLocation(), c.getBlock().getLocation())) {
                     event.blockList().remove(c.getBlock());
-                    continue;
                 }
             }
         }
@@ -335,7 +335,7 @@ public class CratesManager implements Listener {
     }
 
     public static void playRandomSound(Player player, Location location, float a, float b) {
-        player.playSound(location, Sound.values()[(int) Math.random() * Sound.values().length], a, b);
+        player.playSound(location, Sound.values()[((int) (Math.random() * Sound.values().length))], a, b);
     }
 
     private Crate getCrateFromHologram(UUID uuid) {

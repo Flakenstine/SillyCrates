@@ -464,10 +464,7 @@ public enum ParticleEffect {
      * @return Whether the particle effect is supported or not
      */
     public boolean isSupported() {
-        if (requiredVersion == -1) {
-            return true;
-        }
-        return ParticlePacket.getVersion() >= requiredVersion;
+        return requiredVersion == -1 || ParticlePacket.getVersion() >= requiredVersion;
     }
 
     /**

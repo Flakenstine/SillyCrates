@@ -21,7 +21,7 @@ public final class CratesPlugin extends JavaPlugin {
     private static CratesPlugin instance;
     private static CratesManager manager;
     private static ItemStack crate;
-    public static File configFile = new File("plugins/MysteryCrates/config.yml");
+    public static final File configFile = new File("plugins/MysteryCrates/config.yml");
     public static FileConfiguration config = YamlConfiguration.loadConfiguration(configFile);
 
     @Override
@@ -84,8 +84,8 @@ public final class CratesPlugin extends JavaPlugin {
     private void reload() {
         this.reloadConfig();
         config = YamlConfiguration.loadConfiguration(configFile);
-        this.manager = new CratesManager();
-        this.manager.populate();
+        manager = new CratesManager();
+        manager.populate();
     }
 
     public static String getStringFromLocation(Location loc) {

@@ -11,16 +11,17 @@ import java.util.logging.Level;
 public class FileUtil {
 
     private FileUtil() {
-        ;
     }
 
-    public static final void setupConfig() {
+    public static void setupConfig() {
         YamlConfiguration config = (YamlConfiguration) CratesPlugin.config;
         if (CratesPlugin.configFile.exists()) {
             return;
         }
         try {
-            CratesPlugin.configFile.createNewFile();
+            if (!CratesPlugin.configFile.createNewFile()) {
+                return;
+            }
             config.createSection("crates");
             config.save(CratesPlugin.configFile);
         } catch (IOException e) {
@@ -28,7 +29,7 @@ public class FileUtil {
         }
     }
 
-    public static final void registerCrate(Crate c) {
+    public static void registerCrate(Crate c) {
         ConfigurationSection crates = CratesPlugin.config.getConfigurationSection("crates");
         if (crates.getConfigurationSection(c.getId()) != null) {
             return;
@@ -45,7 +46,7 @@ public class FileUtil {
         }
     }
 
-    public static final void removeCrate(Crate c) {
+    public static void removeCrate(Crate c) {
         CratesPlugin.config.set("crates." + c.getId(), null);
         try {
             CratesPlugin.config.save(CratesPlugin.configFile);
