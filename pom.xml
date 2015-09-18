@@ -40,7 +40,7 @@
             <artifactId>holograms</artifactId>
             <version>1.0</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/lib/SimpleHolograms.jar</systemPath>
+            <systemPath>${project.basedir}/res/SimpleHolograms.jar</systemPath>
         </dependency>
     </dependencies>
 

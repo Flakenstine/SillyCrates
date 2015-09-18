@@ -15,7 +15,8 @@ public class CrateLoot {
         UNIQUE(100, "Unique"),
         RARE(50, ChatColor.DARK_PURPLE + "Rare"),
         ULTRA_RARE(25, "Ultra Rare"),
-        LEGENDARY(10, "Legendary");
+        SUPER_RARE(10, "Super Rare"),
+        LEGENDARY(1, "Legendary");
         private final int weight;
         private final String label;
         Rarity(int weight, String label) {
@@ -30,7 +31,8 @@ public class CrateLoot {
         }
     }
 
-    private final Material material;
+    private ItemStack stack;
+    private Material material;
     private final int min;
     private final int max;
     private final Rarity rarity;
@@ -58,11 +60,30 @@ public class CrateLoot {
         this.max = max;
         this.material = type;
         this.data = data;
+        setupItemStack();
     }
+
+    public CrateLoot(String name, Rarity rarity, ItemStack stack, int min, int max) {
+        this.name = name;
+        this.rarity = rarity;
+        this.stack = stack;
+        this.min = min;
+        this.max = max;
+        setupItemStack();
+    }
+
     private int generateStackAmount(int min, int max) {
         ThreadLocalRandom random = ThreadLocalRandom.current();
         lastStackAmount = random.nextInt(min, max+1);
         return lastStackAmount;
+    }
+
+    private void setupItemStack() {
+        if (material != null) {
+            this.stack = new ItemStack(material, generateStackAmount(min, max), data);
+        } else if (stack != null) {
+            this.stack.setAmount(generateStackAmount(min, max));
+        }
     }
 
     public Rarity getRarity() {
@@ -78,7 +99,7 @@ public class CrateLoot {
     }
 
     public ItemStack getStack() {
-        return new ItemStack(material, generateStackAmount(min, max), data);
+        return stack;
     }
 
     public String getFoundMessage() {
