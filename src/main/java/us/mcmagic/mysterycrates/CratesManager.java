@@ -19,6 +19,7 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.scheduler.BukkitScheduler;
 import org.bukkit.util.Vector;
 import us.mcmagic.mysterycrates.util.FileUtil;
 import us.mcmagic.mysterycrates.util.ParticleEffect;
@@ -29,6 +30,7 @@ import java.util.*;
 
 public class CratesManager implements Listener {
 
+    private final BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
     private final boolean cooldownEnabled = false;
     private final int cooldownTimer = 5;
     private final HashMap<UUID, Long> cooldown = new HashMap<>();
@@ -152,14 +154,17 @@ public class CratesManager implements Listener {
 
     public CratesManager() {
         Bukkit.getPluginManager().registerEvents(this, CratesPlugin.getInstance());
-        Bukkit.getScheduler().scheduleSyncRepeatingTask(CratesPlugin.getInstance(), new Runnable() {
+        updateCrates();
+        updatePlayers();
+    }
+
+    private void updateCrates() {
+        scheduler.runTaskTimer(CratesPlugin.getInstance(), new Runnable() {
             @Override
             public void run() {
-                //noinspection unchecked
                 for (Crate crate : (HashSet<Crate>) crates.clone()) {
                     drawCuboidEdges(crate.getEffect(), 0.1, crate.getBlock().getLocation(), new Vector(0D, 0D, 0D), new Vector(1D, 1D, 1D));
                 }
-
                 if (cooldownEnabled) {
                     for (UUID uuid : new HashSet<>(cooldown.keySet())) {
                         int elapsed = (int) ((System.currentTimeMillis() - cooldown.get(uuid)) / 1000);
@@ -172,6 +177,10 @@ public class CratesManager implements Listener {
                 }
             }
         }, 0L, 10L);
+    }
+
+    private void updatePlayers() {
+        ;
     }
 
     public void register(Crate c) {
@@ -284,7 +293,7 @@ public class CratesManager implements Listener {
         unregister(event.getCrate());
         player.getInventory().addItem(cl.getStack());
         player.updateInventory();
-        player.sendMessage(cl.getFoundMessage());
+        player.sendMessage(cl.playerMessage());
     }
 
     @EventHandler

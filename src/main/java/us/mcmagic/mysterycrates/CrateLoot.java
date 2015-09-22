@@ -1,6 +1,7 @@
 package us.mcmagic.mysterycrates;
 
 import net.md_5.bungee.api.ChatColor;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
@@ -102,7 +103,7 @@ public class CrateLoot {
         return stack;
     }
 
-    public String getFoundMessage() {
+    public String playerMessage() {
         return ChatColor.BLUE + "You found " + ChatColor.GOLD + lastStackAmount+ "x " + ChatColor.RESET + getRarity().getLabel() + " " + name + ChatColor.BLUE + "!";
     }
 }
