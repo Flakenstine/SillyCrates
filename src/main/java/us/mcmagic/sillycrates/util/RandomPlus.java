@@ -1,4 +1,4 @@
-package us.mcmagic.mysterycrates.util;
+package us.mcmagic.sillycrates.util;
 
 import org.bukkit.Location;
 import org.bukkit.Material;

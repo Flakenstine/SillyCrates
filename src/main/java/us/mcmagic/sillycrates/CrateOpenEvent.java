@@ -1,4 +1,4 @@
-package us.mcmagic.mysterycrates;
+package us.mcmagic.sillycrates;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;

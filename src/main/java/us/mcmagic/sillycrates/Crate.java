@@ -1,9 +1,9 @@
-package us.mcmagic.mysterycrates;
+package us.mcmagic.sillycrates;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import us.mcmagic.mysterycrates.util.ParticleEffect;
+import us.mcmagic.sillycrates.util.ParticleEffect;
 
 import java.util.UUID;
 

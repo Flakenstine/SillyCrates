@@ -1,4 +1,4 @@
-package us.mcmagic.mysterycrates;
+package us.mcmagic.sillycrates;
 
 import com.sun.istack.internal.Nullable;
 import me.giinger.sh.Events.HologramInteractEvent;
@@ -21,10 +21,10 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitScheduler;
 import org.bukkit.util.Vector;
-import us.mcmagic.mysterycrates.util.FileUtil;
-import us.mcmagic.mysterycrates.util.ParticleEffect;
-import us.mcmagic.mysterycrates.util.RandomUtils;
-import us.mcmagic.mysterycrates.util.WeightedList;
+import us.mcmagic.sillycrates.util.FileUtil;
+import us.mcmagic.sillycrates.util.ParticleEffect;
+import us.mcmagic.sillycrates.util.RandomUtils;
+import us.mcmagic.sillycrates.util.WeightedList;
 
 import java.util.*;
 

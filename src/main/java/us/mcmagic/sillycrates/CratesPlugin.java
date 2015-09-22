@@ -1,4 +1,4 @@
-package us.mcmagic.mysterycrates;
+package us.mcmagic.sillycrates;
 
 import me.giinger.sh.SimpleHolograms;
 import org.bukkit.Bukkit;
@@ -6,15 +6,13 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
-import us.mcmagic.mysterycrates.util.AddGlow;
-import us.mcmagic.mysterycrates.util.FileUtil;
+import us.mcmagic.sillycrates.util.AddGlow;
+import us.mcmagic.sillycrates.util.FileUtil;
 
 import java.io.File;
-import java.lang.reflect.Field;
 
 public final class CratesPlugin extends JavaPlugin {
 

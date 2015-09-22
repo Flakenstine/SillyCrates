@@ -2,9 +2,9 @@
 
 
 
-package us.mcmagic.mysterycrates.util;
+package us.mcmagic.sillycrates.util;
 
-import us.mcmagic.mysterycrates.util.ReflectionUtils.PackageType;
+import us.mcmagic.sillycrates.util.ReflectionUtils.PackageType;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Location;

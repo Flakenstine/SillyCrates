@@ -1,7 +1,6 @@
-package us.mcmagic.mysterycrates;
+package us.mcmagic.sillycrates;
 
 import net.md_5.bungee.api.ChatColor;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 

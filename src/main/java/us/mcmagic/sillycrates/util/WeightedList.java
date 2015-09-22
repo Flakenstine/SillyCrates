@@ -1,4 +1,4 @@
-package us.mcmagic.mysterycrates.util;
+package us.mcmagic.sillycrates.util;
 
 import java.util.HashMap;
 import java.util.concurrent.ThreadLocalRandom;

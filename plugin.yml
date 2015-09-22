@@ -1,7 +1,7 @@
-name: MysteryCrates
+name: SillyCrates
 author: Marinated
-version: 1.1.3
-main: us.mcmagic.mysterycrates.CratesPlugin
+version: ${version}
+main: us.mcmagic.sillycrates.Plugin
 
 commands:
   crate:

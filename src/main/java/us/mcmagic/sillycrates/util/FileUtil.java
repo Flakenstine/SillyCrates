@@ -1,9 +1,9 @@
-package us.mcmagic.mysterycrates.util;
+package us.mcmagic.sillycrates.util;
 
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
-import us.mcmagic.mysterycrates.Crate;
-import us.mcmagic.mysterycrates.CratesPlugin;
+import us.mcmagic.sillycrates.Crate;
+import us.mcmagic.sillycrates.CratesPlugin;
 
 import java.io.IOException;
 import java.util.logging.Level;
