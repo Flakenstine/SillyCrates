@@ -1,10 +1,13 @@
 package us.mcmagic.sillycrates.util;
 
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 import us.mcmagic.sillycrates.Crate;
 import us.mcmagic.sillycrates.CratesPlugin;
+import us.mcmagic.sillycrates.time.TrackedPlayer;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 
@@ -13,24 +16,54 @@ public class FileUtil {
     private FileUtil() {
     }
 
+    public static final File configFile = new File("plugins/SillyCrates/config.yml");
+    public static final File playersFile = new File("plugins/SillyCrates/players.yml");
+    public static YamlConfiguration configYaml = YamlConfiguration.loadConfiguration(configFile);
+    public static YamlConfiguration playerYaml = YamlConfiguration.loadConfiguration(playersFile);
+
     public static void setupConfig() {
-        YamlConfiguration config = (YamlConfiguration) CratesPlugin.config;
-        if (CratesPlugin.configFile.exists()) {
-            return;
-        }
         try {
-            if (!CratesPlugin.configFile.createNewFile()) {
+            if (!configFile.getParentFile().exists()) {
+                configFile.getParentFile().mkdir();
+            }
+            if (!configFile.createNewFile()) {
                 return;
             }
-            config.createSection("crates");
-            config.save(CratesPlugin.configFile);
+            configYaml.createSection("crates");
+            configYaml.set("prefix", "[SillyCrates]");
+            configYaml.save(configFile);
         } catch (IOException e) {
-            CratesPlugin.getInstance().getLogger().log(Level.SEVERE, "Could not setup config.yml", e);
+            CratesPlugin.getInstance().getLogger().log(Level.SEVERE, "Could not setup config.yml");
+            Bukkit.getPluginManager().disablePlugin(CratesPlugin.getInstance());
         }
     }
 
+    public static void setupPlayers() {
+        try {
+            if (playersFile.createNewFile()) {
+                playerYaml.createSection("players");
+                playerYaml.save(playersFile);
+            }
+        } catch (IOException e) {
+            CratesPlugin.getInstance().getLogger().log(Level.SEVERE, "Could not setup players.yml");
+            Bukkit.getPluginManager().disablePlugin(CratesPlugin.getInstance());
+        }
+    }
+
+    public static void updateTrackedPlayer(TrackedPlayer p) throws IOException {
+        ConfigurationSection section = playerYaml.getConfigurationSection("players");
+        if (section == null) {
+            playerYaml.createSection("players");
+            playerYaml.save(playersFile);
+        }
+        ConfigurationSection player = section.createSection(p.getUniqueId().toString());
+        player.set("minutes", p.getPlayTime());
+        player.set("crates", p.getAvailableCrates());
+        playerYaml.save(playersFile);
+    }
+
     public static void registerCrate(Crate c) {
-        ConfigurationSection crates = CratesPlugin.config.getConfigurationSection("crates");
+        ConfigurationSection crates = configYaml.getConfigurationSection("crates");
         if (crates.getConfigurationSection(c.getId()) != null) {
             return;
         }
@@ -39,19 +72,19 @@ public class FileUtil {
         crate.set("owner", c.getOwnerUUID().toString());
         crate.set("particle", c.getEffect().getName());
         try {
-            CratesPlugin.config.save(CratesPlugin.configFile);
+            configYaml.save(configFile);
         } catch (IOException e) {
-            CratesPlugin.getInstance().getLogger().log(Level.SEVERE, "Could not save crate to " + CratesPlugin.configFile, e);
+            CratesPlugin.getInstance().getLogger().log(Level.SEVERE, "Could not save crate to " + configFile, e);
             CratesPlugin.getInstance().getManager().getCrates().remove(c);
         }
     }
 
     public static void removeCrate(Crate c) {
-        CratesPlugin.config.set("crates." + c.getId(), null);
+        configYaml.set("crates." + c.getId(), null);
         try {
-            CratesPlugin.config.save(CratesPlugin.configFile);
+            configYaml.save(configFile);
         } catch (IOException e) {
-            CratesPlugin.getInstance().getLogger().log(Level.SEVERE, "Could remove crate from " + CratesPlugin.configFile, e);
+            CratesPlugin.getInstance().getLogger().log(Level.SEVERE, "Could remove crate from " + configFile, e);
         }
     }
 }

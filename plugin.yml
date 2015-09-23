@@ -1,7 +1,7 @@
 name: SillyCrates
 author: Marinated
-version: ${version}
-main: us.mcmagic.sillycrates.Plugin
+version: 1.0-SNAPSHOT
+main: us.mcmagic.sillycrates.CratesPlugin
 
 commands:
   crate:

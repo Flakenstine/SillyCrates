@@ -37,125 +37,123 @@ public class CratesManager implements Listener {
     private final HashSet<Crate> crates = new HashSet<>();
 
     private static final WeightedList<CrateLoot> loot = new WeightedList<CrateLoot>() {{
-        put(new CrateLoot("Stone", CrateLoot.Rarity.VERY_COMMON, Material.STONE, 1, 32), CrateLoot.Rarity.VERY_COMMON.getWeight());
-        put(new CrateLoot("Polished Granite", CrateLoot.Rarity.VERY_COMMON, Material.STONE, (byte) 0x2, 1, 32), CrateLoot.Rarity.VERY_COMMON.getWeight());
-        put(new CrateLoot("Polished Andesite", CrateLoot.Rarity.VERY_COMMON, Material.STONE, (byte) 0x6,  1, 32), CrateLoot.Rarity.VERY_COMMON.getWeight());
-        put(new CrateLoot("Grass", CrateLoot.Rarity.VERY_COMMON, Material.GRASS, 1, 16), CrateLoot.Rarity.VERY_COMMON.getWeight());
-        put(new CrateLoot("Dirt", CrateLoot.Rarity.VERY_COMMON, Material.DIRT, 1, 64), CrateLoot.Rarity.VERY_COMMON.getWeight());
-        put(new CrateLoot("Podzol", CrateLoot.Rarity.UNCOMMON, Material.DIRT, (byte) 0x2, 1, 32), CrateLoot.Rarity.UNCOMMON.getWeight());
-        put(new CrateLoot("Cobblestone", CrateLoot.Rarity.VERY_COMMON, Material.COBBLESTONE, 16, 64), CrateLoot.Rarity.VERY_COMMON.getWeight());
-        put(new CrateLoot("Wood Planks", CrateLoot.Rarity.VERY_COMMON, Material.WOOD, 1, 32), CrateLoot.Rarity.VERY_COMMON.getWeight());
-        put(new CrateLoot("Spruce Wood Planks", CrateLoot.Rarity.VERY_COMMON, Material.WOOD, (byte) 0x1, 1, 32), CrateLoot.Rarity.VERY_COMMON.getWeight());
-        put(new CrateLoot("Jungle Wood Planks", CrateLoot.Rarity.VERY_COMMON, Material.WOOD, (byte) 0x3, 1, 32), CrateLoot.Rarity.VERY_COMMON.getWeight());
-        put(new CrateLoot("Acacia Wood Planks", CrateLoot.Rarity.VERY_COMMON, Material.WOOD, (byte) 0x4, 1, 32), CrateLoot.Rarity.VERY_COMMON.getWeight());
-        put(new CrateLoot("Dark Oak Wood Planks", CrateLoot.Rarity.VERY_COMMON, Material.WOOD, (byte) 0x5, 1, 32), CrateLoot.Rarity.VERY_COMMON.getWeight());
-        put(new CrateLoot("Dark Oak Sapling", CrateLoot.Rarity.VERY_COMMON, Material.SAPLING, (byte) 0x5, 1, 10), CrateLoot.Rarity.VERY_COMMON.getWeight());
-        put(new CrateLoot("Sand", CrateLoot.Rarity.VERY_COMMON, Material.SAND, 5, 32), CrateLoot.Rarity.VERY_COMMON.getWeight());
-        put(new CrateLoot("Red Sand", CrateLoot.Rarity.VERY_COMMON, Material.SAND, (byte) 0x1, 5, 16), CrateLoot.Rarity.VERY_COMMON.getWeight());
-        put(new CrateLoot("Gravel", CrateLoot.Rarity.VERY_COMMON, Material.GRAVEL, 1, 32), CrateLoot.Rarity.VERY_COMMON.getWeight());
-        put(new CrateLoot("Gold Ore", CrateLoot.Rarity.RARE, Material.GOLD_ORE, 1, 16), CrateLoot.Rarity.RARE.getWeight());
-        put(new CrateLoot("Iron Ore", CrateLoot.Rarity.UNIQUE, Material.IRON_ORE, 1, 6), CrateLoot.Rarity.UNIQUE.getWeight());
-        put(new CrateLoot("Coal Ore", CrateLoot.Rarity.UNIQUE, Material.COAL_ORE, 1, 32), CrateLoot.Rarity.UNIQUE.getWeight());
-        put(new CrateLoot("Oak Wood", CrateLoot.Rarity.VERY_COMMON, Material.LOG, 1, 16), CrateLoot.Rarity.VERY_COMMON.getWeight());
-        put(new CrateLoot("Dark Oak Wood", CrateLoot.Rarity.VERY_COMMON, Material.LOG_2, (byte) 0x1, 1, 16), CrateLoot.Rarity.VERY_COMMON.getWeight());
-        put(new CrateLoot("Oak Leaves", CrateLoot.Rarity.VERY_COMMON, Material.LEAVES, 1, 6), CrateLoot.Rarity.VERY_COMMON.getWeight());
-        put(new CrateLoot("Sponge", CrateLoot.Rarity.ULTRA_RARE, Material.SPONGE, 1, 10), CrateLoot.Rarity.ULTRA_RARE.getWeight());
-        put(new CrateLoot("Wet Sponge", CrateLoot.Rarity.ULTRA_RARE, Material.SPONGE, (byte) 0x1, 1, 10), CrateLoot.Rarity.ULTRA_RARE.getWeight());
-        put(new CrateLoot("Glass", CrateLoot.Rarity.UNIQUE, Material.GLASS, 1, 12), CrateLoot.Rarity.UNIQUE.getWeight());
-        put(new CrateLoot("Lapis Lazuli Ore", CrateLoot.Rarity.UNIQUE, Material.LAPIS_ORE, 1, 6), CrateLoot.Rarity.UNIQUE.getWeight());
-        put(new CrateLoot("Lapis Lazuli Block", CrateLoot.Rarity.UNIQUE, Material.LAPIS_BLOCK, 1, 3), CrateLoot.Rarity.UNIQUE.getWeight());
-        put(new CrateLoot("Dispenser", CrateLoot.Rarity.ULTRA_RARE, Material.DISPENSER, 1, 1), CrateLoot.Rarity.ULTRA_RARE.getWeight());
-        put(new CrateLoot("Note Block", CrateLoot.Rarity.SUPER_RARE, Material.NOTE_BLOCK, 1, 2), CrateLoot.Rarity.SUPER_RARE.getWeight());
-        put(new CrateLoot("Powered Rail", CrateLoot.Rarity.UNIQUE, Material.POWERED_RAIL, 1, 16), CrateLoot.Rarity.UNIQUE.getWeight());
-        put(new CrateLoot("Detector Rail", CrateLoot.Rarity.UNIQUE, Material.DETECTOR_RAIL, 1, 5), CrateLoot.Rarity.UNIQUE.getWeight());
-        put(new CrateLoot("Sticky Piston", CrateLoot.Rarity.UNIQUE, Material.PISTON_STICKY_BASE, 1, 2), CrateLoot.Rarity.UNIQUE.getWeight());
-        put(new CrateLoot("Cobweb", CrateLoot.Rarity.VERY_COMMON, Material.WEB, 1, 5), CrateLoot.Rarity.VERY_COMMON.getWeight());
-        put(new CrateLoot("Dead Shrub", CrateLoot.Rarity.VERY_COMMON, Material.DEAD_BUSH, 1, 16), CrateLoot.Rarity.VERY_COMMON.getWeight());
-        put(new CrateLoot("Piston", CrateLoot.Rarity.UNIQUE, Material.PISTON_BASE, 1, 3), CrateLoot.Rarity.UNIQUE.getWeight());
-        put(new CrateLoot("Wool", CrateLoot.Rarity.UNCOMMON, Material.WOOL, 1, 6), CrateLoot.Rarity.UNCOMMON.getWeight());
-        put(new CrateLoot("Pink Wool", CrateLoot.Rarity.UNCOMMON, Material.WOOL, (byte) 0x6, 1, 3), CrateLoot.Rarity.UNCOMMON.getWeight());
-        put(new CrateLoot("Dandelion", CrateLoot.Rarity.VERY_COMMON, Material.YELLOW_FLOWER, 1, 5), CrateLoot.Rarity.VERY_COMMON.getWeight());
-        put(new CrateLoot("Poppy", CrateLoot.Rarity.VERY_COMMON, Material.RED_ROSE, 1, 12), CrateLoot.Rarity.VERY_COMMON.getWeight());
-        put(new CrateLoot("Allium", CrateLoot.Rarity.VERY_COMMON, Material.RED_ROSE, (byte) 0x2, 1, 6), CrateLoot.Rarity.VERY_COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.BROWN_MUSHROOM, 16, 64), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.RED_MUSHROOM, 16, 64), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.LEAVES, 1, 6), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.GOLD_BLOCK, 1, 3), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.IRON_BLOCK, 1, 3), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.STONE_SLAB2, 1, 16), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.RARE, Material.TNT, 1, 2), CrateLoot.Rarity.RARE.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.BOOKSHELF, 1, 3), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.MOSSY_COBBLESTONE, 16, 32), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.OBSIDIAN, 1, 8), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.TORCH, 16, 32), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.RARE, Material.MOB_SPAWNER, 1, 1), CrateLoot.Rarity.RARE.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.CHEST, 1, 1), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.RARE, Material.DIAMOND_ORE, 1, 3), CrateLoot.Rarity.RARE.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.RARE, Material.DIAMOND_BLOCK, 1, 2), CrateLoot.Rarity.RARE.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.WORKBENCH, 1, 1), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.FURNACE, 1, 2), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.SIGN, 1, 5), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.LADDER, 1, 16), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.RAILS, 1, 16), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.LEVER, 1, 6), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.STONE_PLATE, 1, 5), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.REDSTONE_TORCH_ON, 16, 32), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.STONE_BUTTON, 1, 6), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.CACTUS, 1, 5), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.CLAY, 1, 16), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.RARE, Material.JUKEBOX, 1, 1), CrateLoot.Rarity.RARE.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.FENCE, 16, 32), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.PUMPKIN, 1, 16), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.NETHERRACK, 1, 6), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.SOUL_SAND, 1, 6), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.GLOWSTONE, 1, 12), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.CAKE, 1, 3), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.STAINED_GLASS, (byte) 0x1, 1, 6), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.STAINED_GLASS, (byte) 0x2, 1, 6), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.STAINED_GLASS, (byte) 0x3, 1, 6), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.STAINED_GLASS, (byte) 0x4, 1, 6), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.STAINED_GLASS, (byte) 0x5, 1, 6), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.TRAP_DOOR, 1, 3), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.SMOOTH_BRICK, (byte) 0x3, 1, 4), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.IRON_FENCE, 8, 16), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.THIN_GLASS, 1, 5), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.MELON_BLOCK, 1, 2), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.MYCEL, 1, 3), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.NETHER_WARTS, 1, 3), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.RARE, Material.ENCHANTMENT_TABLE, 1, 1), CrateLoot.Rarity.RARE.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.ENDER_STONE, 16, 32), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.LEGENDARY, Material.DRAGON_EGG, 1, 1), CrateLoot.Rarity.LEGENDARY.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.REDSTONE_LAMP_OFF, 1, 6), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.EMERALD_ORE, 1, 3), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.RARE, Material.ENDER_CHEST, 1, 1), CrateLoot.Rarity.RARE.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.RARE, Material.EMERALD_BLOCK, 1, 1), CrateLoot.Rarity.RARE.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.RARE, Material.BEACON, 1, 3), CrateLoot.Rarity.RARE.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.COBBLE_WALL, 8, 16), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.RARE, Material.SKULL_ITEM, 1, 1), CrateLoot.Rarity.RARE.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.RARE, Material.SKULL_ITEM, (byte) 0x1, 1, 1), CrateLoot.Rarity.RARE.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.RARE, Material.SKULL_ITEM, (byte) 0x4, 1, 1), CrateLoot.Rarity.RARE.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.ANVIL, 1, 1), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.TRAPPED_CHEST, 1, 1), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.DAYLIGHT_DETECTOR, 1, 2), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.REDSTONE_BLOCK, 1, 1), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.HOPPER, 1, 3), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.QUARTZ_BLOCK, 1, 16), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.STAINED_CLAY, (byte) 0x0, 32, 64), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.STAINED_CLAY, (byte) 0x3, 32, 64), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.STAINED_CLAY, (byte) 0x11, 32, 64), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.STAINED_CLAY, (byte) 0x14, 32, 64), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.PRISMARINE, 10, 20), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.PRISMARINE, (byte) 0x2, 10, 30), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.CARPET, 6, 12), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.CARPET, (byte) 0x1, 6, 12), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.CARPET, (byte) 0x3, 6, 12), CrateLoot.Rarity.COMMON.getWeight());
-        put(new CrateLoot(CrateLoot.Rarity.COMMON, Material.CAKE, 1, 3), CrateLoot.Rarity.COMMON.getWeight());
+//        put(new CrateLoot("Stone", CrateLoot.Rarity.VERY_COMMON, Material.STONE, 1, 32), CrateLoot.Rarity.VERY_COMMON.getWeight());
+//        put(new CrateLoot("Polished Granite", CrateLoot.Rarity.VERY_COMMON, Material.STONE, (byte) 0x2, 1, 32), CrateLoot.Rarity.VERY_COMMON.getWeight());
+//        put(new CrateLoot("Polished Andesite", CrateLoot.Rarity.VERY_COMMON, Material.STONE, (byte) 0x6,  1, 32), CrateLoot.Rarity.VERY_COMMON.getWeight());
+//        put(new CrateLoot("Grass", CrateLoot.Rarity.VERY_COMMON, Material.GRASS, 1, 16), CrateLoot.Rarity.VERY_COMMON.getWeight());
+//        put(new CrateLoot("Dirt", CrateLoot.Rarity.VERY_COMMON, Material.DIRT, 1, 64), CrateLoot.Rarity.VERY_COMMON.getWeight());
+//        put(new CrateLoot("Podzol", CrateLoot.Rarity.UNCOMMON, Material.DIRT, (byte) 0x2, 1, 32), CrateLoot.Rarity.UNCOMMON.getWeight());
+//        put(new CrateLoot("Cobblestone", CrateLoot.Rarity.VERY_COMMON, Material.COBBLESTONE, 16, 64), CrateLoot.Rarity.VERY_COMMON.getWeight());
+//        put(new CrateLoot("Wood Planks", CrateLoot.Rarity.VERY_COMMON, Material.WOOD, 1, 32), CrateLoot.Rarity.VERY_COMMON.getWeight());
+//        put(new CrateLoot("Spruce Wood Planks", CrateLoot.Rarity.VERY_COMMON, Material.WOOD, (byte) 0x1, 1, 32), CrateLoot.Rarity.VERY_COMMON.getWeight());
+//        put(new CrateLoot("Jungle Wood Planks", CrateLoot.Rarity.VERY_COMMON, Material.WOOD, (byte) 0x3, 1, 32), CrateLoot.Rarity.VERY_COMMON.getWeight());
+//        put(new CrateLoot("Acacia Wood Planks", CrateLoot.Rarity.VERY_COMMON, Material.WOOD, (byte) 0x4, 1, 32), CrateLoot.Rarity.VERY_COMMON.getWeight());
+//        put(new CrateLoot("Dark Oak Wood Planks", CrateLoot.Rarity.VERY_COMMON, Material.WOOD, (byte) 0x5, 1, 32), CrateLoot.Rarity.VERY_COMMON.getWeight());
+//        put(new CrateLoot("Dark Oak Sapling", CrateLoot.Rarity.VERY_COMMON, Material.SAPLING, (byte) 0x5, 1, 10), CrateLoot.Rarity.VERY_COMMON.getWeight());
+//        put(new CrateLoot("Sand", CrateLoot.Rarity.VERY_COMMON, Material.SAND, 5, 32), CrateLoot.Rarity.VERY_COMMON.getWeight());
+//        put(new CrateLoot("Red Sand", CrateLoot.Rarity.VERY_COMMON, Material.SAND, (byte) 0x1, 5, 16), CrateLoot.Rarity.VERY_COMMON.getWeight());
+//        put(new CrateLoot("Gravel", CrateLoot.Rarity.VERY_COMMON, Material.GRAVEL, 1, 32), CrateLoot.Rarity.VERY_COMMON.getWeight());
+//        put(new CrateLoot("Gold Ore", CrateLoot.Rarity.RARE, Material.GOLD_ORE, 1, 16), CrateLoot.Rarity.RARE.getWeight());
+//        put(new CrateLoot("Iron Ore", CrateLoot.Rarity.UNIQUE, Material.IRON_ORE, 1, 6), CrateLoot.Rarity.UNIQUE.getWeight());
+//        put(new CrateLoot("Coal Ore", CrateLoot.Rarity.UNIQUE, Material.COAL_ORE, 1, 32), CrateLoot.Rarity.UNIQUE.getWeight());
+//        put(new CrateLoot("Oak Wood", CrateLoot.Rarity.VERY_COMMON, Material.LOG, 1, 16), CrateLoot.Rarity.VERY_COMMON.getWeight());
+//        put(new CrateLoot("Dark Oak Wood", CrateLoot.Rarity.VERY_COMMON, Material.LOG_2, (byte) 0x1, 1, 16), CrateLoot.Rarity.VERY_COMMON.getWeight());
+//        put(new CrateLoot("Oak Leaves", CrateLoot.Rarity.VERY_COMMON, Material.LEAVES, 1, 6), CrateLoot.Rarity.VERY_COMMON.getWeight());
+//        put(new CrateLoot("Sponge", CrateLoot.Rarity.ULTRA_RARE, Material.SPONGE, 1, 10), CrateLoot.Rarity.ULTRA_RARE.getWeight());
+//        put(new CrateLoot("Wet Sponge", CrateLoot.Rarity.ULTRA_RARE, Material.SPONGE, (byte) 0x1, 1, 10), CrateLoot.Rarity.ULTRA_RARE.getWeight());
+//        put(new CrateLoot("Glass", CrateLoot.Rarity.UNIQUE, Material.GLASS, 1, 12), CrateLoot.Rarity.UNIQUE.getWeight());
+//        put(new CrateLoot("Lapis Lazuli Ore", CrateLoot.Rarity.UNIQUE, Material.LAPIS_ORE, 1, 6), CrateLoot.Rarity.UNIQUE.getWeight());
+//        put(new CrateLoot("Lapis Lazuli Block", CrateLoot.Rarity.UNIQUE, Material.LAPIS_BLOCK, 1, 3), CrateLoot.Rarity.UNIQUE.getWeight());
+//        put(new CrateLoot("Dispenser", CrateLoot.Rarity.ULTRA_RARE, Material.DISPENSER, 1, 1), CrateLoot.Rarity.ULTRA_RARE.getWeight());
+//        put(new CrateLoot("Note Block", CrateLoot.Rarity.SUPER_RARE, Material.NOTE_BLOCK, 1, 2), CrateLoot.Rarity.SUPER_RARE.getWeight());
+//        put(new CrateLoot("Powered Rail", CrateLoot.Rarity.UNIQUE, Material.POWERED_RAIL, 1, 16), CrateLoot.Rarity.UNIQUE.getWeight());
+//        put(new CrateLoot("Detector Rail", CrateLoot.Rarity.UNIQUE, Material.DETECTOR_RAIL, 1, 5), CrateLoot.Rarity.UNIQUE.getWeight());
+//        put(new CrateLoot("Sticky Piston", CrateLoot.Rarity.UNIQUE, Material.PISTON_STICKY_BASE, 1, 2), CrateLoot.Rarity.UNIQUE.getWeight());
+//        put(new CrateLoot("Cobweb", CrateLoot.Rarity.VERY_COMMON, Material.WEB, 1, 5), CrateLoot.Rarity.VERY_COMMON.getWeight());
+//        put(new CrateLoot("Dead Shrub", CrateLoot.Rarity.VERY_COMMON, Material.DEAD_BUSH, 1, 16), CrateLoot.Rarity.VERY_COMMON.getWeight());
+//        put(new CrateLoot("Piston", CrateLoot.Rarity.UNIQUE, Material.PISTON_BASE, 1, 3), CrateLoot.Rarity.UNIQUE.getWeight());
+//        put(new CrateLoot("Wool", CrateLoot.Rarity.UNCOMMON, Material.WOOL, 1, 6), CrateLoot.Rarity.UNCOMMON.getWeight());
+//        put(new CrateLoot("Pink Wool", CrateLoot.Rarity.UNCOMMON, Material.WOOL, (byte) 0x6, 1, 3), CrateLoot.Rarity.UNCOMMON.getWeight());
+//        put(new CrateLoot("Dandelion", CrateLoot.Rarity.VERY_COMMON, Material.YELLOW_FLOWER, 1, 5), CrateLoot.Rarity.VERY_COMMON.getWeight());
+//        put(new CrateLoot("Poppy", CrateLoot.Rarity.VERY_COMMON, Material.RED_ROSE, 1, 12), CrateLoot.Rarity.VERY_COMMON.getWeight());
+//        put(new CrateLoot("Allium", CrateLoot.Rarity.VERY_COMMON, Material.RED_ROSE, (byte) 0x2, 1, 6), CrateLoot.Rarity.VERY_COMMON.getWeight());
+//        put(new CrateLoot("Brown Mushroom", CrateLoot.Rarity.VERY_COMMON, Material.BROWN_MUSHROOM, 16, 64), CrateLoot.Rarity.VERY_COMMON.getWeight());
+//        put(new CrateLoot("Red Mushroom", CrateLoot.Rarity.VERY_COMMON, Material.RED_MUSHROOM, 16, 64), CrateLoot.Rarity.VERY_COMMON.getWeight());
+//        put(new CrateLoot("Gold Block", CrateLoot.Rarity.ULTRA_RARE, Material.GOLD_BLOCK, 1, 3), CrateLoot.Rarity.ULTRA_RARE.getWeight());
+//        put(new CrateLoot("Iron Block", CrateLoot.Rarity.ULTRA_RARE, Material.IRON_BLOCK, 1, 3), CrateLoot.Rarity.ULTRA_RARE.getWeight());
+//        put(new CrateLoot("Stone Slab", CrateLoot.Rarity.VERY_COMMON, Material.STONE_SLAB2, 1, 16), CrateLoot.Rarity.VERY_COMMON.getWeight());
+//        put(new CrateLoot("TNT", CrateLoot.Rarity.SUPER_RARE, Material.TNT, 1, 2), CrateLoot.Rarity.SUPER_RARE.getWeight());
+//        put(new CrateLoot("Bookshelf", CrateLoot.Rarity.ULTRA_RARE, Material.BOOKSHELF, 1, 3), CrateLoot.Rarity.ULTRA_RARE.getWeight());
+//        put(new CrateLoot("Mossy Cobblestone", CrateLoot.Rarity.UNIQUE, Material.MOSSY_COBBLESTONE, 16, 32), CrateLoot.Rarity.UNIQUE.getWeight());
+//        put(new CrateLoot("Obsidian", CrateLoot.Rarity.RARE, Material.OBSIDIAN, 1, 8), CrateLoot.Rarity.RARE.getWeight());
+//        put(new CrateLoot("Torch", CrateLoot.Rarity.UNCOMMON, Material.TORCH, 16, 32), CrateLoot.Rarity.UNCOMMON.getWeight());
+//        put(new CrateLoot("Mob Spawner", CrateLoot.Rarity.SUPER_RARE, Material.MOB_SPAWNER, 1, 1), CrateLoot.Rarity.SUPER_RARE.getWeight());
+//        put(new CrateLoot("Chest", CrateLoot.Rarity.COMMON, Material.CHEST, 1, 1), CrateLoot.Rarity.COMMON.getWeight());
+//        put(new CrateLoot("Diamond Ore", CrateLoot.Rarity.RARE, Material.DIAMOND_ORE, 1, 3), CrateLoot.Rarity.RARE.getWeight());
+//        put(new CrateLoot("Diamond Block", CrateLoot.Rarity.SUPER_RARE, Material.DIAMOND_BLOCK, 1, 2), CrateLoot.Rarity.SUPER_RARE.getWeight());
+//        put(new CrateLoot("Crafting Table", CrateLoot.Rarity.VERY_COMMON, Material.WORKBENCH, 1, 1), CrateLoot.Rarity.VERY_COMMON.getWeight());
+//        put(new CrateLoot("Furnace", CrateLoot.Rarity.UNCOMMON, Material.FURNACE, 1, 2), CrateLoot.Rarity.UNCOMMON.getWeight());
+//        put(new CrateLoot("Sign", CrateLoot.Rarity.COMMON, Material.SIGN, 1, 5), CrateLoot.Rarity.COMMON.getWeight());
+//        put(new CrateLoot("Ladder", CrateLoot.Rarity.COMMON, Material.LADDER, 1, 16), CrateLoot.Rarity.COMMON.getWeight());
+//        put(new CrateLoot("Rails", CrateLoot.Rarity.COMMON, Material.RAILS, 1, 16), CrateLoot.Rarity.COMMON.getWeight());
+//        put(new CrateLoot("Lever", CrateLoot.Rarity.COMMON, Material.LEVER, 1, 6), CrateLoot.Rarity.COMMON.getWeight());
+//        put(new CrateLoot("Stone Pressure Plate", CrateLoot.Rarity.VERY_COMMON, Material.STONE_PLATE, 1, 5), CrateLoot.Rarity.VERY_COMMON.getWeight());
+//        put(new CrateLoot("Redstone Torch", CrateLoot.Rarity.COMMON, Material.REDSTONE_TORCH_ON, 16, 32), CrateLoot.Rarity.COMMON.getWeight());
+//        put(new CrateLoot("Stone Button", CrateLoot.Rarity.VERY_COMMON, Material.STONE_BUTTON, 1, 6), CrateLoot.Rarity.VERY_COMMON.getWeight());
+//        put(new CrateLoot("Cactus", CrateLoot.Rarity.COMMON, Material.CACTUS, 1, 5), CrateLoot.Rarity.COMMON.getWeight());
+//        put(new CrateLoot("Clay", CrateLoot.Rarity.COMMON, Material.CLAY, 1, 16), CrateLoot.Rarity.COMMON.getWeight());
+//        put(new CrateLoot("Jukebox", CrateLoot.Rarity.SUPER_RARE, Material.JUKEBOX, 1, 1), CrateLoot.Rarity.SUPER_RARE.getWeight());
+//        put(new CrateLoot("Fence", CrateLoot.Rarity.RARE, Material.FENCE, 16, 32), CrateLoot.Rarity.RARE.getWeight());
+//        put(new CrateLoot("Pumpkin", CrateLoot.Rarity.UNIQUE, Material.PUMPKIN, 1, 16), CrateLoot.Rarity.UNIQUE.getWeight());
+//        put(new CrateLoot("Netherrack", CrateLoot.Rarity.ULTRA_RARE, Material.NETHERRACK, 1, 6), CrateLoot.Rarity.ULTRA_RARE.getWeight());
+//        put(new CrateLoot("Soul Sand", CrateLoot.Rarity.ULTRA_RARE, Material.SOUL_SAND, 1, 6), CrateLoot.Rarity.ULTRA_RARE.getWeight());
+//        put(new CrateLoot("Glowstone", CrateLoot.Rarity.ULTRA_RARE, Material.GLOWSTONE, 1, 12), CrateLoot.Rarity.ULTRA_RARE.getWeight());
+//        put(new CrateLoot("Cake", CrateLoot.Rarity.ULTRA_RARE, Material.CAKE, 1, 3), CrateLoot.Rarity.ULTRA_RARE.getWeight());
+//        put(new CrateLoot("Stained Glass", CrateLoot.Rarity.RARE, Material.STAINED_GLASS, (byte) 0x1, 1, 6), CrateLoot.Rarity.RARE.getWeight());
+//        put(new CrateLoot("Stained Glass", CrateLoot.Rarity.RARE, Material.STAINED_GLASS, (byte) 0x2, 1, 6), CrateLoot.Rarity.RARE.getWeight());
+//        put(new CrateLoot("Stained Glass", CrateLoot.Rarity.RARE, Material.STAINED_GLASS, (byte) 0x3, 1, 6), CrateLoot.Rarity.RARE.getWeight());
+//        put(new CrateLoot("Stained Glass", CrateLoot.Rarity.RARE, Material.STAINED_GLASS, (byte) 0x4, 1, 6), CrateLoot.Rarity.RARE.getWeight());
+//        put(new CrateLoot("Stained Glass", CrateLoot.Rarity.RARE, Material.STAINED_GLASS, (byte) 0x5, 1, 6), CrateLoot.Rarity.RARE.getWeight());
+//        put(new CrateLoot("Trapdoor", CrateLoot.Rarity.UNIQUE, Material.TRAP_DOOR, 1, 3), CrateLoot.Rarity.UNIQUE.getWeight());
+//        put(new CrateLoot("Stone Brick", CrateLoot.Rarity.UNIQUE, Material.SMOOTH_BRICK, (byte) 0x3, 1, 4), CrateLoot.Rarity.UNIQUE.getWeight());
+//        put(new CrateLoot("Iron Bars", CrateLoot.Rarity.UNCOMMON, Material.IRON_FENCE, 8, 16), CrateLoot.Rarity.UNCOMMON.getWeight());
+//        put(new CrateLoot("Glass Pane", CrateLoot.Rarity.RARE, Material.THIN_GLASS, 1, 5), CrateLoot.Rarity.RARE.getWeight());
+//        put(new CrateLoot("Melon", CrateLoot.Rarity.COMMON, Material.MELON_BLOCK, 1, 2), CrateLoot.Rarity.COMMON.getWeight());
+//        put(new CrateLoot("Mycelium", CrateLoot.Rarity.RARE, Material.MYCEL, 1, 3), CrateLoot.Rarity.RARE.getWeight());
+//        put(new CrateLoot("Nether Wart", CrateLoot.Rarity.ULTRA_RARE, Material.NETHER_WARTS, 1, 3), CrateLoot.Rarity.ULTRA_RARE.getWeight());
+//        put(new CrateLoot("Table o' Magic", CrateLoot.Rarity.SUPER_RARE, Material.ENCHANTMENT_TABLE, 1, 1), CrateLoot.Rarity.SUPER_RARE.getWeight());
+//        put(new CrateLoot("End Stone", CrateLoot.Rarity.SUPER_RARE, Material.ENDER_STONE, 16, 32), CrateLoot.Rarity.SUPER_RARE.getWeight());
+//        put(new CrateLoot("Dragon Egg", CrateLoot.Rarity.LEGENDARY, Material.DRAGON_EGG, 1, 1), CrateLoot.Rarity.LEGENDARY.getWeight());
+//        put(new CrateLoot("Redstone Lamp", CrateLoot.Rarity.UNIQUE, Material.REDSTONE_LAMP_OFF, 1, 6), CrateLoot.Rarity.UNIQUE.getWeight());
+//        put(new CrateLoot("Emerald Ore", CrateLoot.Rarity.RARE, Material.EMERALD_ORE, 1, 3), CrateLoot.Rarity.RARE.getWeight());
+//        put(new CrateLoot("Ender Chest", CrateLoot.Rarity.ULTRA_RARE, Material.ENDER_CHEST, 1, 1), CrateLoot.Rarity.ULTRA_RARE.getWeight());
+//        put(new CrateLoot("Emerald Block", CrateLoot.Rarity.SUPER_RARE, Material.EMERALD_BLOCK, 1, 1), CrateLoot.Rarity.SUPER_RARE.getWeight());
+//        put(new CrateLoot("Beacon", CrateLoot.Rarity.SUPER_RARE, Material.BEACON, 1, 3), CrateLoot.Rarity.SUPER_RARE.getWeight());
+//        put(new CrateLoot("Cobblestone Wall", CrateLoot.Rarity.UNIQUE, Material.COBBLE_WALL, 8, 16), CrateLoot.Rarity.UNIQUE.getWeight());
+//        put(new CrateLoot("Skull", CrateLoot.Rarity.SUPER_RARE, Material.SKULL_ITEM, 1, 1), CrateLoot.Rarity.SUPER_RARE.getWeight());
+//        put(new CrateLoot("Wither Head", CrateLoot.Rarity.SUPER_RARE, Material.SKULL_ITEM, (byte) 0x1, 1, 1), CrateLoot.Rarity.SUPER_RARE.getWeight());
+//        put(new CrateLoot("Creeper Head", CrateLoot.Rarity.SUPER_RARE, Material.SKULL_ITEM, (byte) 0x4, 1, 1), CrateLoot.Rarity.SUPER_RARE.getWeight());
+//        put(new CrateLoot("Anvil", CrateLoot.Rarity.UNIQUE, Material.ANVIL, 1, 1), CrateLoot.Rarity.UNIQUE.getWeight());
+//        put(new CrateLoot("Trapped Chest", CrateLoot.Rarity.UNIQUE, Material.TRAPPED_CHEST, 1, 1), CrateLoot.Rarity.UNIQUE.getWeight());
+//        put(new CrateLoot("Daylight Sensor", CrateLoot.Rarity.UNIQUE, Material.DAYLIGHT_DETECTOR, 1, 2), CrateLoot.Rarity.UNIQUE.getWeight());
+//        put(new CrateLoot("Redstone Block", CrateLoot.Rarity.UNIQUE, Material.REDSTONE_BLOCK, 1, 1), CrateLoot.Rarity.UNIQUE.getWeight());
+//        put(new CrateLoot("Hopper", CrateLoot.Rarity.UNIQUE, Material.HOPPER, 1, 3), CrateLoot.Rarity.UNIQUE.getWeight());
+//        put(new CrateLoot("Quartz Block", CrateLoot.Rarity.RARE, Material.QUARTZ_BLOCK, 1, 16), CrateLoot.Rarity.RARE.getWeight());
+        put(new CrateLoot("Stained Clay", CrateLoot.Rarity.UNCOMMON, Material.STAINED_CLAY, 32, 64), CrateLoot.Rarity.UNCOMMON.getWeight());
+//        put(new CrateLoot("Stained Clay", CrateLoot.Rarity.UNCOMMON, Material.STAINED_CLAY, (byte) 0x3, 32, 64), CrateLoot.Rarity.UNCOMMON.getWeight());
+//        put(new CrateLoot("Stained Clay", CrateLoot.Rarity.UNCOMMON, Material.STAINED_CLAY, (byte) 0x11, 32, 64), CrateLoot.Rarity.UNCOMMON.getWeight());
+//        put(new CrateLoot("Stained Clay", CrateLoot.Rarity.UNCOMMON, Material.STAINED_CLAY, (byte) 0x14, 32, 64), CrateLoot.Rarity.UNCOMMON.getWeight());
+//        put(new CrateLoot("Prismarine", CrateLoot.Rarity.RARE, Material.PRISMARINE, 10, 20), CrateLoot.Rarity.RARE.getWeight());
+//        put(new CrateLoot("Prismarine", CrateLoot.Rarity.RARE, Material.PRISMARINE, (byte) 0x2, 10, 30), CrateLoot.Rarity.RARE.getWeight());
+//        put(new CrateLoot("Carpet", CrateLoot.Rarity.UNCOMMON, Material.CARPET, 6, 12), CrateLoot.Rarity.UNCOMMON.getWeight());
+//        put(new CrateLoot("Carpet", CrateLoot.Rarity.UNCOMMON, Material.CARPET, (byte) 0x1, 6, 12), CrateLoot.Rarity.UNCOMMON.getWeight());
+//        put(new CrateLoot("Carpet", CrateLoot.Rarity.UNCOMMON, Material.CARPET, (byte) 0x3, 6, 12), CrateLoot.Rarity.UNCOMMON.getWeight());
+//        put(new CrateLoot("Cake", CrateLoot.Rarity.COMMON, Material.CAKE, 1, 3), CrateLoot.Rarity.COMMON.getWeight());
     }};
 
     public CratesManager() {
         Bukkit.getPluginManager().registerEvents(this, CratesPlugin.getInstance());
         updateCrates();
-        updatePlayers();
     }
 
     private void updateCrates() {
@@ -170,17 +168,13 @@ public class CratesManager implements Listener {
                         int elapsed = (int) ((System.currentTimeMillis() - cooldown.get(uuid)) / 1000);
                         if (elapsed >= cooldownTimer) {
                             if (Bukkit.getPlayer(uuid) == null) continue;
-                            Bukkit.getPlayer(uuid).sendMessage(colorize("&9You may now place another " + Crate.NAME + "&r&9."));
+                            Bukkit.getPlayer(uuid).sendMessage(colorize(CratesPlugin.CHAT_PREFIX + " &9You may now place another " + Crate.NAME + "&r&9."));
                             cooldown.remove(uuid);
                         }
                     }
                 }
             }
         }, 0L, 10L);
-    }
-
-    private void updatePlayers() {
-        ;
     }
 
     public void register(Crate c) {
@@ -199,7 +193,11 @@ public class CratesManager implements Listener {
     }
 
     public void populate() {
-        ConfigurationSection root = CratesPlugin.config.getConfigurationSection("crates");
+        ConfigurationSection root = FileUtil.configYaml.getConfigurationSection("crates");
+        if (root == null) {
+            System.out.println("Could not populate crates list in config.yml");
+            return;
+        }
         for (Object section : root.getKeys(false)) {
             String name = (String) section;
             ConfigurationSection nextSection = root.getConfigurationSection(name);
@@ -227,7 +225,7 @@ public class CratesManager implements Listener {
 
     private void error(Player player, @Nullable String message) {
         if (message != null) {
-            player.sendMessage(colorize("&c" + message));
+            player.sendMessage(colorize(CratesPlugin.CHAT_PREFIX + " &c" + message));
         }
         player.playSound(player.getLocation(), Sound.BURP, 100, 2);
     }

@@ -4,6 +4,7 @@ import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
+import java.security.SecureRandom;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class CrateLoot {
@@ -38,7 +39,8 @@ public class CrateLoot {
     private final Rarity rarity;
     private byte data;
     private final String name;
-    private int lastStackAmount;
+    private int stackAmount;
+    private static final SecureRandom random = new SecureRandom();
 
     public CrateLoot(Rarity rarity, Material type, int min, int max) {
         this(rarity, type, (byte) 0x0, min, max);
@@ -60,7 +62,7 @@ public class CrateLoot {
         this.max = max;
         this.material = type;
         this.data = data;
-        setupItemStack();
+        this.stack = new ItemStack(material, 1, data);
     }
 
     public CrateLoot(String name, Rarity rarity, ItemStack stack, int min, int max) {
@@ -73,16 +75,13 @@ public class CrateLoot {
     }
 
     private int generateStackAmount(int min, int max) {
-        ThreadLocalRandom random = ThreadLocalRandom.current();
-        lastStackAmount = random.nextInt(min, max+1);
-        return lastStackAmount;
+        return random.nextInt(max-min+1) + min;
     }
 
     private void setupItemStack() {
-        if (material != null) {
-            this.stack = new ItemStack(material, generateStackAmount(min, max), data);
-        } else if (stack != null) {
-            this.stack.setAmount(generateStackAmount(min, max));
+        // If Potion, for instance.
+        if (stack != null) {
+
         }
     }
 
@@ -99,10 +98,12 @@ public class CrateLoot {
     }
 
     public ItemStack getStack() {
+        this.stackAmount = generateStackAmount(min, max);
+        stack.setAmount(stackAmount);
         return stack;
     }
 
     public String playerMessage() {
-        return ChatColor.BLUE + "You found " + ChatColor.GOLD + lastStackAmount+ "x " + ChatColor.RESET + getRarity().getLabel() + " " + name + ChatColor.BLUE + "!";
+        return ChatColor.BLUE + "You found " + ChatColor.GOLD + stackAmount+ "x " + ChatColor.RESET + getRarity().getLabel() + " " + name + ChatColor.BLUE + "!";
     }
 }

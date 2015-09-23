@@ -1,12 +1,13 @@
 package us.mcmagic.sillycrates.util;
 
+import java.security.SecureRandom;
 import java.util.HashMap;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class WeightedList<K> extends HashMap<K, Integer> {
 
     private int total;
-    private static final ThreadLocalRandom rand = ThreadLocalRandom.current();
+    private static final SecureRandom random = new SecureRandom();
 
     @Override
     public Integer put(K a, Integer b) {
@@ -20,7 +21,7 @@ public class WeightedList<K> extends HashMap<K, Integer> {
 
     public K get() {
         if (total <= 0) return null;
-        int i = rand.nextInt(total);
+        int i = random.nextInt(total);
         for (Entry<K, Integer> entry:entrySet()) {
             i -= entry.getValue();
             if (i < 0) return entry.getKey();
