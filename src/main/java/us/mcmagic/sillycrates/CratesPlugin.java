@@ -24,8 +24,12 @@ public final class CratesPlugin extends JavaPlugin implements Filter {
     private Logger log = getLogger().getParent();
     public static String CHAT_PREFIX;
 
+    //TODO: Make crate found message more appealing
+    //TODO: Display colored (same color as rarity) firework when crate is opened
+    //TODO: Implement /crate and /crates command
+    //TODO: Define configurable messages in config.yml
 
-    public static String[] moduleLog = {
+    public static String[] consoleOutput = {
             "▐■▮■▮■▮■▮■▮■▮■▮■▮■▮■▮■▮■▮■▮■▮■▮■▮■▮■▮■▐",
             "▐           </SillyCrates>            ▐",
             "▐ Plugin Enabled...                   ▐",
@@ -52,7 +56,7 @@ public final class CratesPlugin extends JavaPlugin implements Filter {
         crate = registerItem();
         registerListeners();
         loadConfiguration();
-        for (String s : moduleLog) {
+        for (String s : consoleOutput) {
             log.info(s);
         }
     }
@@ -119,12 +123,6 @@ public final class CratesPlugin extends JavaPlugin implements Filter {
         return true;
     }
 
-    /**
-     * Nope. Nope. Nope.
-     * @param φ
-     * @return nope.avi
-     * @throws Throwable
-     */
     protected final synchronized static strictfp boolean $valid_java(boolean φ) throws Throwable {
         do do do do do do do do
             break;

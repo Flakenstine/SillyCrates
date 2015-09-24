@@ -5,19 +5,19 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 import java.security.SecureRandom;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class CrateLoot {
 
+
     public enum Rarity {
-        VERY_COMMON(600, "Very Common"),
-        COMMON(400, ChatColor.GRAY + "Common"),
-        UNCOMMON(200, "Uncommon"),
-        UNIQUE(100, "Unique"),
-        RARE(50, ChatColor.DARK_PURPLE + "Rare"),
-        ULTRA_RARE(25, "Ultra Rare"),
-        SUPER_RARE(10, "Super Rare"),
-        LEGENDARY(1, "Legendary");
+        VERY_COMMON(600, "&8Very Common"),
+        COMMON(400, "&7Common"),
+        UNCOMMON(200, "&2Uncommon"),
+        UNIQUE(100, "&aUnique"),
+        RARE(50, "&1Rare"),
+        ULTRA_RARE(25, "&9Ultra Rare"),
+        SUPER_RARE(10, "&dSuper Rare"),
+        LEGENDARY(1, "&5Legendary");
         private final int weight;
         private final String label;
         Rarity(int weight, String label) {
@@ -85,16 +85,20 @@ public class CrateLoot {
         }
     }
 
-    public Rarity getRarity() {
-        return rarity;
+    public String getName() {
+        return name;
     }
 
     public Material getMaterial() {
         return material;
     }
 
-    public String getName() {
-        return name;
+    public byte getData() {
+        return data;
+    }
+
+    public Rarity getRarity() {
+        return rarity;
     }
 
     public ItemStack getStack() {
@@ -103,7 +107,7 @@ public class CrateLoot {
         return stack;
     }
 
-    public String playerMessage() {
-        return ChatColor.BLUE + "You found " + ChatColor.GOLD + stackAmount+ "x " + ChatColor.RESET + getRarity().getLabel() + " " + name + ChatColor.BLUE + "!";
+    public String[] playerMessage() {
+        return new String[] {"", "", ""};
     }
 }

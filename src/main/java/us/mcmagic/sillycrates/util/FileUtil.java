@@ -30,7 +30,7 @@ public class FileUtil {
                 return;
             }
             configYaml.createSection("crates");
-            configYaml.set("prefix", "[SillyCrates]");
+            configYaml.set("prefix", "&l&8|&2SillyCrates&l&8|&r");
             configYaml.save(configFile);
         } catch (IOException e) {
             CratesPlugin.getInstance().getLogger().log(Level.SEVERE, "Could not setup config.yml");
