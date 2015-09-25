@@ -15,13 +15,11 @@ public class Crate {
     private final String id;
     private final Block block;
     private final UUID owner;
-    private final UUID hologramID;
     private final ParticleEffect effect;
 
-    public Crate(String id, UUID owner, UUID hologramID, Location loc, ParticleEffect effect) {
+    public Crate(String id, UUID owner, Location loc, ParticleEffect effect) {
         this.id = id;
         this.owner = owner;
-        this.hologramID = hologramID;
         this.block = loc.getBlock();
         this.effect = effect;
     }
@@ -32,10 +30,6 @@ public class Crate {
 
     public UUID getOwnerUUID() {
         return this.owner;
-    }
-
-    public UUID getHologramID() {
-        return hologramID;
     }
 
     public Location getCenter() {
@@ -52,6 +46,6 @@ public class Crate {
 
     @Override
     public String toString() {
-        return hologramID.toString();
+        return id.toString();
     }
 }

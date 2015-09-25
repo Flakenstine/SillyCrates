@@ -1,8 +1,6 @@
 package us.mcmagic.sillycrates;
 
 import com.sun.istack.internal.Nullable;
-import me.giinger.sh.Events.HologramInteractEvent;
-import me.giinger.sh.SimpleHolograms;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -109,11 +107,11 @@ public class CratesManager implements Listener {
         put(new CrateLoot("Soul Sand", CrateLoot.Rarity.ULTRA_RARE, Material.SOUL_SAND, 1, 6), CrateLoot.Rarity.ULTRA_RARE.getWeight());
         put(new CrateLoot("Glowstone", CrateLoot.Rarity.ULTRA_RARE, Material.GLOWSTONE, 1, 12), CrateLoot.Rarity.ULTRA_RARE.getWeight());
         put(new CrateLoot("Cake", CrateLoot.Rarity.ULTRA_RARE, Material.CAKE, 1, 3), CrateLoot.Rarity.ULTRA_RARE.getWeight());
-        put(new CrateLoot("Stained Glass", CrateLoot.Rarity.RARE, Material.STAINED_GLASS, (byte) 0x1, 1, 6), CrateLoot.Rarity.RARE.getWeight());
-        put(new CrateLoot("Stained Glass", CrateLoot.Rarity.RARE, Material.STAINED_GLASS, (byte) 0x2, 1, 6), CrateLoot.Rarity.RARE.getWeight());
-        put(new CrateLoot("Stained Glass", CrateLoot.Rarity.RARE, Material.STAINED_GLASS, (byte) 0x3, 1, 6), CrateLoot.Rarity.RARE.getWeight());
-        put(new CrateLoot("Stained Glass", CrateLoot.Rarity.RARE, Material.STAINED_GLASS, (byte) 0x4, 1, 6), CrateLoot.Rarity.RARE.getWeight());
-        put(new CrateLoot("Stained Glass", CrateLoot.Rarity.RARE, Material.STAINED_GLASS, (byte) 0x5, 1, 6), CrateLoot.Rarity.RARE.getWeight());
+        put(new CrateLoot("Stained Glass", CrateLoot.Rarity.RARE, Material.STAINED_GLASS, (byte) 1, 1, 6), CrateLoot.Rarity.RARE.getWeight());
+        put(new CrateLoot("Stained Glass", CrateLoot.Rarity.RARE, Material.STAINED_GLASS, (byte) 2, 1, 6), CrateLoot.Rarity.RARE.getWeight());
+        put(new CrateLoot("Stained Glass", CrateLoot.Rarity.RARE, Material.STAINED_GLASS, (byte) 3, 1, 6), CrateLoot.Rarity.RARE.getWeight());
+        put(new CrateLoot("Stained Glass", CrateLoot.Rarity.RARE, Material.STAINED_GLASS, (byte) 4, 1, 6), CrateLoot.Rarity.RARE.getWeight());
+        put(new CrateLoot("Stained Glass", CrateLoot.Rarity.RARE, Material.STAINED_GLASS, (byte) 5, 1, 6), CrateLoot.Rarity.RARE.getWeight());
         put(new CrateLoot("Trapdoor", CrateLoot.Rarity.UNIQUE, Material.TRAP_DOOR, 1, 3), CrateLoot.Rarity.UNIQUE.getWeight());
         put(new CrateLoot("Stone Brick", CrateLoot.Rarity.UNIQUE, Material.SMOOTH_BRICK, (byte) 0x3, 1, 4), CrateLoot.Rarity.UNIQUE.getWeight());
         put(new CrateLoot("Iron Bars", CrateLoot.Rarity.UNCOMMON, Material.IRON_FENCE, 8, 16), CrateLoot.Rarity.UNCOMMON.getWeight());
@@ -140,14 +138,14 @@ public class CratesManager implements Listener {
         put(new CrateLoot("Hopper", CrateLoot.Rarity.UNIQUE, Material.HOPPER, 1, 3), CrateLoot.Rarity.UNIQUE.getWeight());
         put(new CrateLoot("Quartz Block", CrateLoot.Rarity.RARE, Material.QUARTZ_BLOCK, 1, 16), CrateLoot.Rarity.RARE.getWeight());
         put(new CrateLoot("Stained Clay", CrateLoot.Rarity.UNCOMMON, Material.STAINED_CLAY, 32, 64), CrateLoot.Rarity.UNCOMMON.getWeight());
-        put(new CrateLoot("Stained Clay", CrateLoot.Rarity.UNCOMMON, Material.STAINED_CLAY, (byte) 0x3, 32, 64), CrateLoot.Rarity.UNCOMMON.getWeight());
-        put(new CrateLoot("Stained Clay", CrateLoot.Rarity.UNCOMMON, Material.STAINED_CLAY, (byte) 0x11, 32, 64), CrateLoot.Rarity.UNCOMMON.getWeight());
-        put(new CrateLoot("Stained Clay", CrateLoot.Rarity.UNCOMMON, Material.STAINED_CLAY, (byte) 0x14, 32, 64), CrateLoot.Rarity.UNCOMMON.getWeight());
+        put(new CrateLoot("Stained Clay", CrateLoot.Rarity.UNCOMMON, Material.STAINED_CLAY, (byte) 3, 32, 64), CrateLoot.Rarity.UNCOMMON.getWeight());
+        put(new CrateLoot("Stained Clay", CrateLoot.Rarity.UNCOMMON, Material.STAINED_CLAY, (byte) 11, 32, 64), CrateLoot.Rarity.UNCOMMON.getWeight());
+        put(new CrateLoot("Stained Clay", CrateLoot.Rarity.UNCOMMON, Material.STAINED_CLAY, (byte) 14, 32, 64), CrateLoot.Rarity.UNCOMMON.getWeight());
         put(new CrateLoot("Prismarine", CrateLoot.Rarity.RARE, Material.PRISMARINE, 10, 20), CrateLoot.Rarity.RARE.getWeight());
         put(new CrateLoot("Prismarine", CrateLoot.Rarity.RARE, Material.PRISMARINE, (byte) 0x2, 10, 30), CrateLoot.Rarity.RARE.getWeight());
         put(new CrateLoot("Carpet", CrateLoot.Rarity.UNCOMMON, Material.CARPET, 6, 12), CrateLoot.Rarity.UNCOMMON.getWeight());
-        put(new CrateLoot("Carpet", CrateLoot.Rarity.UNCOMMON, Material.CARPET, (byte) 0x1, 6, 12), CrateLoot.Rarity.UNCOMMON.getWeight());
-        put(new CrateLoot("Carpet", CrateLoot.Rarity.UNCOMMON, Material.CARPET, (byte) 0x3, 6, 12), CrateLoot.Rarity.UNCOMMON.getWeight());
+        put(new CrateLoot("Carpet", CrateLoot.Rarity.UNCOMMON, Material.CARPET, (byte) 1, 6, 12), CrateLoot.Rarity.UNCOMMON.getWeight());
+        put(new CrateLoot("Carpet", CrateLoot.Rarity.UNCOMMON, Material.CARPET, (byte) 3, 6, 12), CrateLoot.Rarity.UNCOMMON.getWeight());
         put(new CrateLoot("Cake", CrateLoot.Rarity.COMMON, Material.CAKE, 1, 3), CrateLoot.Rarity.COMMON.getWeight());
     }};
 
@@ -186,7 +184,6 @@ public class CratesManager implements Listener {
     }
 
     public void unregister(Crate c) {
-        SimpleHolograms.getHologramManager().removeHologram(c.getHologramID().toString(), true);
         c.getBlock().setType(Material.AIR);
         crates.remove(c);
         FileUtil.removeCrate(c);
@@ -203,9 +200,8 @@ public class CratesManager implements Listener {
             ConfigurationSection nextSection = root.getConfigurationSection(name);
             Location location = CratesPlugin.getLocationFromString(nextSection.getString("location"));
             UUID owner = UUID.fromString(nextSection.getString("owner"));
-            UUID hologram = UUID.fromString(name);
             ParticleEffect effect = ParticleEffect.fromName(nextSection.getString("particle"));
-            Crate c = new Crate(name, owner, hologram, location, effect);
+            Crate c = new Crate(name, owner, location, effect);
             register(c);
         }
     }
@@ -247,8 +243,7 @@ public class CratesManager implements Listener {
                 return;
             }
             UUID id = UUID.randomUUID();
-            Crate c = new Crate(id.toString(), event.getPlayer().getUniqueId(), id, event.getBlock().getLocation(), ParticleEffect.fromName("enchantmenttable"));
-            SimpleHolograms.getHologramManager().createHologram(c.getCenter().add(0, -.5, 0), c.getHologramID().toString(), Crate.NAME);
+            Crate c = new Crate(id.toString(), event.getPlayer().getUniqueId(), event.getBlock().getLocation(), ParticleEffect.fromName("enchantmenttable"));
             register(c);
         } else if (event.getItemInHand().isSimilar(new ItemStack(Material.CHEST)) || event.getItemInHand().isSimilar(new ItemStack(Material.HOPPER))) {
             if (isCrateNear(event.getBlock())) {
@@ -306,24 +301,6 @@ public class CratesManager implements Listener {
         }
     }
 
-    @EventHandler
-    public void onHologramInteract(HologramInteractEvent event) {
-        if (event.getHologram().getText().get(0).equals(Crate.NAME)) {
-            Player p = event.getPlayer();
-            UUID id = UUID.fromString(event.getHologram().getId());
-            Crate crate;
-            if ((crate = getCrateFromHologram(id)) != null) {
-                if (!p.getUniqueId().equals(crate.getOwnerUUID())) {
-                    error(p, "Uh oh! This doesn't belong to you!");
-                    p.getEyeLocation().toVector().multiply(-1);
-                } else {
-                    CrateOpenEvent openEvent = new CrateOpenEvent(crate, event.getPlayer().getUniqueId());
-                    Bukkit.getServer().getPluginManager().callEvent(openEvent);
-                }
-            }
-        }
-    }
-
     public static boolean compareBlockLocation(Location a, Location b) {
         return (a.getBlockX() == b.getBlockX() && a.getBlockY() == b.getBlockY() && a.getBlockZ() == b.getBlockZ());
     }
@@ -342,15 +319,6 @@ public class CratesManager implements Listener {
 
     public static void playRandomSound(Player player, Location location, float a, float b) {
         player.playSound(location, Sound.values()[((int) (Math.random() * Sound.values().length))], a, b);
-    }
-
-    private Crate getCrateFromHologram(UUID uuid) {
-        for (Crate crate : getCrates()) {
-            if (crate.getHologramID().equals(uuid)) {
-                return crate;
-            }
-        }
-        return null;
     }
 
     public static void sphereAnimation(ParticleEffect effect, Location location, double radius, int particles) {

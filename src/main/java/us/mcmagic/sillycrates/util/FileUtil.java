@@ -30,7 +30,7 @@ public class FileUtil {
                 return;
             }
             configYaml.createSection("crates");
-            configYaml.set("prefix", "&l&8|&2SillyCrates&l&8|&r");
+            configYaml.set("prefix", "&0&l■&b&lSillyCrates&0&l■");
             configYaml.save(configFile);
         } catch (IOException e) {
             CratesPlugin.getInstance().getLogger().log(Level.SEVERE, "Could not setup config.yml");
@@ -59,6 +59,7 @@ public class FileUtil {
         ConfigurationSection player = section.createSection(p.getUniqueId().toString());
         player.set("minutes", p.getPlayTime());
         player.set("crates", p.getAvailableCrates());
+        player.set("name", Bukkit.getPlayer(p.getUniqueId()).getName());
         playerYaml.save(playersFile);
     }
 

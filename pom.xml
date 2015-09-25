@@ -17,10 +17,6 @@
             <id>bukkit-repo</id>
             <url>http://repo.bukkit.org/content/groups/public/</url>
         </repository>
-        <repository>
-            <id>ess-repo</id>
-            <url>http://repo.ess3.net/content/groups/essentials</url>
-        </repository>
     </repositories>
 
     <dependencies>
@@ -37,14 +33,6 @@
             <artifactId>bukkit</artifactId>
             <version>LATEST</version>
             <scope>provided</scope>
-        </dependency>
-        <!--Hologram API-->
-        <dependency>
-            <groupId>me.giinger</groupId>
-            <artifactId>holograms</artifactId>
-            <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/res/SimpleHolograms.jar</systemPath>
         </dependency>
     </dependencies>
 </project>

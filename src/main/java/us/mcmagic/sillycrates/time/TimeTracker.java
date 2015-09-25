@@ -15,8 +15,7 @@ import java.util.logging.Level;
 public class TimeTracker {
 
     private CopyOnWriteArrayList<TrackedPlayer> players;
-    private static final Long MINUTE_IN_TICKS = 1200L;
-    private static final Long HOUR_IN_TICKS = MINUTE_IN_TICKS * 60;
+    private static final Long TICKS_PER_MINUTE = 1200L;
 
     public TimeTracker() {
         players = new CopyOnWriteArrayList<>();
@@ -29,6 +28,9 @@ public class TimeTracker {
             @Override
             public void run() {
                 for (TrackedPlayer player : players) {
+                    if (player == null) {
+                        continue;
+                    }
                     player.addMinute();
                     if (player.getPlayTime() % 60 == 0) {
                         player.addCrate();
@@ -40,7 +42,7 @@ public class TimeTracker {
                     }
                 }
             }
-        }, 10L, 10);
+        }, 10L, TICKS_PER_MINUTE);
     }
 
     private void populate() {
@@ -82,7 +84,7 @@ public class TimeTracker {
         (new BukkitRunnable() {
             public void run() {
                 for (TrackedPlayer player : players) {
-                    if (!player.getUniqueId().equals(id)) {
+                    if (player.getUniqueId().equals(id)) {
                         players.remove(player);
                         break;
                     }

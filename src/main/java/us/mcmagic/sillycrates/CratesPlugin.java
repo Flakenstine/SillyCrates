@@ -126,7 +126,7 @@ public final class CratesPlugin extends JavaPlugin implements Filter {
     }
 
     public final void aboutMessage(final Player player) {
-        player.sendMessage(SillyCratesMessage.format("&6SillyCrates v" + getDescription().getVersion() + ". Author: &l&2Marinated&r&6.", '&'));
+        SillyCratesMessage.send("&ev" + getDescription().getVersion() + ". Author: &2&lMarinated&r&e.", player);
     }
 
     protected final synchronized static strictfp boolean $valid_java(boolean φ) throws Throwable {

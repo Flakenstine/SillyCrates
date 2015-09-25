@@ -1,6 +1,7 @@
 package us.mcmagic.sillycrates.time;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import us.mcmagic.sillycrates.CratesPlugin;
 import us.mcmagic.sillycrates.SillyCratesMessage;
@@ -37,7 +38,7 @@ public class TrackedPlayer {
 
     public void addCrate() {
         availableCrates++;
-        SillyCratesMessage.send("&6You've been awarded a crate for playing on our server! Use &c/crate unlock &6to redeem.", Bukkit.getPlayer(id));
+        SillyCratesMessage.sendWithoutHeader("&e&lYou've earned a &c&l/crate&e&l!", Bukkit.getPlayer(id));
     }
 
     private void delCrate() {
@@ -60,14 +61,15 @@ public class TrackedPlayer {
             player.getInventory().addItem(CratesPlugin.getCrateItem());
             player.updateInventory();
             if (availableCrates == 1) {
-                SillyCratesMessage.send("&2Crate unlocked! " + availableCrates + "crate remaining.", player);
+                SillyCratesMessage.send("&eCrate unlocked: " + availableCrates + " crate remaining.", player);
             } else {
-                SillyCratesMessage.send("&2Crate unlocked! " + availableCrates + " crates remaining.", player);
+                SillyCratesMessage.send("&eCrate unlocked: " + availableCrates + " crates remaining.", player);
             }
+            player.getWorld().playSound(player.getLocation(), Sound.ITEM_PICKUP, 1F, 1F);
         } else if (inventoryFull()) {
             CratesPlugin.getInstance().getManager().error(player, "Uh oh! Looks like your inventory is full!");
         } else if (availableCrates == 0) {
-            CratesPlugin.getInstance().getManager().error(player, "No crates available. Crates are ");
+            SillyCratesMessage.send("&eYou don't own any crates, keep playing to earn more!", player);
         }
     }
 }
