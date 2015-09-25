@@ -63,8 +63,9 @@ public class TimeTracker {
                     }
                 }
                 if (isFirstJoin(id)) {
-                    TrackedPlayer p = new TrackedPlayer(id, 1, 1);
+                    TrackedPlayer p = new TrackedPlayer(id, 1, 0);
                     players.add(p);
+                    p.addCrate();
                     try {
                         FileUtil.updateTrackedPlayer(p);
                     } catch (IOException e) {
