@@ -223,7 +223,7 @@ public class CratesManager implements Listener {
         return false;
     }
 
-    private void error(Player player, @Nullable String message) {
+    public void error(Player player, @Nullable String message) {
         if (message != null) {
             player.sendMessage(colorize(CratesPlugin.CHAT_PREFIX + " &c" + message));
         }
@@ -291,7 +291,8 @@ public class CratesManager implements Listener {
         unregister(event.getCrate());
         player.getInventory().addItem(cl.getStack());
         player.updateInventory();
-        player.sendMessage(cl.playerMessage());
+//        cl.foundMessage(player);
+        cl.doFirework(event.getCrate().getCenter());
     }
 
     @EventHandler

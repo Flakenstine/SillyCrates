@@ -40,7 +40,7 @@ public class TimeTracker {
                     }
                 }
             }
-        }, 10L, MINUTE_IN_TICKS);
+        }, 10L, 10);
     }
 
     private void populate() {
@@ -89,6 +89,16 @@ public class TimeTracker {
                 }
             }
         }).runTaskAsynchronously(CratesPlugin.getInstance());
+    }
+
+    public TrackedPlayer findTrackedPlayer(UUID id) {
+        TrackedPlayer trackedPlayer = null;
+        for (TrackedPlayer player : players) {
+            if (player.getUniqueId().equals(id)) {
+                trackedPlayer = player;
+            }
+        }
+        return trackedPlayer;
     }
 
     public boolean isFirstJoin(UUID id) {

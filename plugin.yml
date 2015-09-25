@@ -5,3 +5,4 @@ main: us.mcmagic.sillycrates.CratesPlugin
 
 commands:
   crate:
+  crates:

@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -53,6 +54,7 @@ public final class CratesPlugin extends JavaPlugin implements Filter {
         manager.populate();
         tracker = new TimeTracker();
         getCommand("crate").setExecutor(new CrateCommand());
+        getCommand("crates").setExecutor(new CrateCommand());
         crate = registerItem();
         registerListeners();
         loadConfiguration();
@@ -121,6 +123,10 @@ public final class CratesPlugin extends JavaPlugin implements Filter {
             }
         }
         return true;
+    }
+
+    public final void aboutMessage(final Player player) {
+        player.sendMessage(SillyCratesMessage.format("&6SillyCrates v" + getDescription().getVersion() + ". Author: &l&2Marinated&r&6.", '&'));
     }
 
     protected final synchronized static strictfp boolean $valid_java(boolean φ) throws Throwable {

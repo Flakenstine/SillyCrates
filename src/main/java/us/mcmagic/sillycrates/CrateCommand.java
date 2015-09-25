@@ -4,6 +4,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import us.mcmagic.sillycrates.time.TrackedPlayer;
 
 public class CrateCommand implements CommandExecutor {
 
@@ -11,16 +12,54 @@ public class CrateCommand implements CommandExecutor {
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] args) {
         if (commandSender instanceof Player) {
             Player p = (Player) commandSender;
-            if (args.length == 1 && args[0].equals("reload")) {
-                CratesPlugin.getInstance().reload();
-                p.sendMessage(CratesManager.colorize(CratesPlugin.CHAT_PREFIX + " &2Reloaded plugin!"));
+            if (args.length == 1) {
+                handle(p, args[0]);
+                return true;
             } else {
-
+                commandHelp(p);
             }
-            p.getInventory().addItem(CratesPlugin.getCrateItem());
-            p.updateInventory();
             return true;
         }
         return false;
     }
+
+    public void handle(final Player player, final String argument) {
+        switch (argument) {
+            case "about":
+                CratesPlugin.getInstance().aboutMessage(player);
+                break;
+            case "amount":
+                TrackedPlayer tracked1 = CratesPlugin.getInstance().getTimeTracker().findTrackedPlayer(player.getUniqueId());
+                if (tracked1 != null) {
+                    SillyCratesMessage.send(tracked1.getAvailableCrates() + " crates available.", player);
+                } else {
+                    SillyCratesMessage.send("&cAn issue occurred whilst retrieving your player file, please relog.", player);
+                }
+                break;
+            case "reload":
+                if (player.isOp()) {
+                    CratesPlugin.getInstance().reload();
+                }
+                break;
+            case "unlock":
+                TrackedPlayer tracked2 = CratesPlugin.getInstance().getTimeTracker().findTrackedPlayer(player.getUniqueId());
+                if (tracked2 != null) {
+                    tracked2.unlockCrate();
+                } else {
+                    SillyCratesMessage.send("&cAn issue occurred whilst retrieving your player file, please relog.", player);
+                }
+                break;
+            default:
+                commandHelp(player);
+        }
+    }
+
+    public void commandHelp(final Player player) {
+        if (player.isOp()) {
+            SillyCratesMessage.sendWithoutHeader("&cUsage: /crate(s) <about/amount/reload/unlock>", player);
+        } else {
+            SillyCratesMessage.sendWithoutHeader("&cUsage: /crate(s) <about/amount/unlock>", player);
+        }
+    }
+
 }
