@@ -38,20 +38,16 @@ public class TrackedPlayer {
 
     public void addCrate() {
         availableCrates++;
-        SillyCratesMessage.sendWithoutHeader("&e&lYou've earned a &c&l/crate&e&l!", Bukkit.getPlayer(id));
+        Player player = Bukkit.getPlayer(id);
+        SillyCratesMessage.sendWithoutHeader("&e&lYou've earned a &c&l/crate&e&l!", player);
     }
 
     private void delCrate() {
-        if (availableCrates > 0) {
-            availableCrates--;
-        } else {
-            availableCrates = 0;
-        }
+        availableCrates = (availableCrates > 0 ? availableCrates-1 : 0);
     }
 
     public boolean inventoryFull() {
-        Player player = Bukkit.getPlayer(id);
-        return player.getInventory().firstEmpty() == -1;
+        return Bukkit.getPlayer(id).getInventory().firstEmpty() == -1;
     }
 
     public void unlockCrate() {
