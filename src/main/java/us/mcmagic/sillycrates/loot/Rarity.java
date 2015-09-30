@@ -1,7 +1,7 @@
 package us.mcmagic.sillycrates.loot;
 
 import org.bukkit.Color;
-import us.mcmagic.sillycrates.SillyCratesMessage;
+import us.mcmagic.sillycrates.util.SillyCratesMessage;
 
 public enum Rarity {
     VERY_COMMON(500, "&8Very Common", Color.BLACK),

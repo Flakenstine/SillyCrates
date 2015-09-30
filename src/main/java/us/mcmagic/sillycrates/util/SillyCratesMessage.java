@@ -1,7 +1,8 @@
-package us.mcmagic.sillycrates;
+package us.mcmagic.sillycrates.util;
 
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.entity.Player;
+import us.mcmagic.sillycrates.CratesPlugin;
 
 import java.util.List;
 

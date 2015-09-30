@@ -4,7 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import us.mcmagic.sillycrates.CratesPlugin;
-import us.mcmagic.sillycrates.SillyCratesMessage;
+import us.mcmagic.sillycrates.util.SillyCratesMessage;
 
 import java.util.UUID;
 

@@ -10,11 +10,11 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 import us.mcmagic.sillycrates.loot.entity.CrateEntityFactory;
 import us.mcmagic.sillycrates.loot.entity.CrateEntityType;
-import us.mcmagic.sillycrates.loot.entity.ICrateEntityFactory;
 import us.mcmagic.sillycrates.time.PlayerListener;
 import us.mcmagic.sillycrates.time.TimeTracker;
 import us.mcmagic.sillycrates.util.FileUtil;
 import us.mcmagic.sillycrates.util.NMSUtil;
+import us.mcmagic.sillycrates.util.SillyCratesMessage;
 
 import java.util.logging.Filter;
 import java.util.logging.LogRecord;

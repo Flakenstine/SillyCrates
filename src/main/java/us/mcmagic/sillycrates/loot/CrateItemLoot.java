@@ -12,7 +12,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.FireworkMeta;
 import us.mcmagic.sillycrates.CratesManager;
 import us.mcmagic.sillycrates.CratesPlugin;
-import us.mcmagic.sillycrates.SillyCratesMessage;
+import us.mcmagic.sillycrates.util.SillyCratesMessage;
 
 public class CrateItemLoot implements ICrateItem {
 
