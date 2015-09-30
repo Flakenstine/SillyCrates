@@ -32,7 +32,7 @@ public class TimeTracker {
                         continue;
                     }
                     player.addMinute();
-                    if (player.getPlayTime() % 60 == 0) {
+                    if (player.getPlayTime() % 15 == 0) {
                         player.addCrate();
                     }
                     try {
@@ -54,7 +54,7 @@ public class TimeTracker {
         }
     }
 
-    public void addPlayerAsync(final UUID id) {
+    public void addPlayerAsync(final UUID id) throws NullPointerException {
         (new BukkitRunnable() {
             public void run() {
                 for (TrackedPlayer player : players) {
@@ -62,20 +62,23 @@ public class TimeTracker {
                         break;
                     }
                 }
-                if (isFirstJoin(id)) {
+                if (isFirstJoin(id) && Bukkit.getPlayer(id) != null) {
                     TrackedPlayer p = new TrackedPlayer(id, 1, 0);
                     players.add(p);
                     p.addCrate();
                     try {
-                        FileUtil.updateTrackedPlayer(p);
+                        String name = Bukkit.getPlayer(id).getName();
+                        FileUtil.registerTrackedPlayer(p, name);
                     } catch (IOException e) {
-                        ;
+                        e.printStackTrace();
                     }
                 } else {
                     ConfigurationSection player = FileUtil.playerYaml.getConfigurationSection("players." + id.toString());
                     int minutes = (Integer) player.get("minutes");
                     int crates = (Integer) player.get("crates");
-                    TimeTracker.this.players.add(new TrackedPlayer(id, minutes, crates));
+                    TrackedPlayer p = new TrackedPlayer(id, minutes, crates);
+                    players.add(p);
+
                 }
             }
         }).runTaskAsynchronously(CratesPlugin.getInstance());
