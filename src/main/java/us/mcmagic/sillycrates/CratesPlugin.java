@@ -8,9 +8,13 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
+import us.mcmagic.sillycrates.loot.entity.CrateEntityFactory;
+import us.mcmagic.sillycrates.loot.entity.CrateEntityType;
+import us.mcmagic.sillycrates.loot.entity.ICrateEntityFactory;
 import us.mcmagic.sillycrates.time.PlayerListener;
 import us.mcmagic.sillycrates.time.TimeTracker;
 import us.mcmagic.sillycrates.util.FileUtil;
+import us.mcmagic.sillycrates.util.NMSUtil;
 
 import java.util.logging.Filter;
 import java.util.logging.LogRecord;
@@ -20,6 +24,7 @@ public final class CratesPlugin extends JavaPlugin implements Filter {
 
     private static CratesPlugin instance;
     private CratesManager manager;
+    private CrateEntityFactory entityFactory;
     private static ItemStack crate;
     private TimeTracker tracker;
     private Logger log = getLogger().getParent();
@@ -52,10 +57,12 @@ public final class CratesPlugin extends JavaPlugin implements Filter {
         FileUtil.setupPlayers();
         manager = new CratesManager();
         manager.populate();
+        entityFactory = new CrateEntityFactory();
         tracker = new TimeTracker();
         getCommand("crate").setExecutor(new CrateCommand());
         getCommand("crates").setExecutor(new CrateCommand());
         crate = registerItem();
+        registerEntities();
         registerListeners();
         loadConfiguration();
         for (String s : consoleOutput) {
@@ -63,7 +70,11 @@ public final class CratesPlugin extends JavaPlugin implements Filter {
         }
     }
 
-    public void registerListeners() {
+    private void registerEntities() {
+        NMSUtil.registerEntity(CrateEntityType.CRATE_ZOMBIE);
+    }
+
+    private void registerListeners() {
         Bukkit.getPluginManager().registerEvents(new PlayerListener(), this);
     }
 
@@ -88,6 +99,10 @@ public final class CratesPlugin extends JavaPlugin implements Filter {
 
     public CratesManager getManager() {
         return manager;
+    }
+
+    public CrateEntityFactory getEntityFactory() {
+        return entityFactory;
     }
 
     public TimeTracker getTimeTracker() {
