@@ -31,7 +31,12 @@ public class CrateCommand implements CommandExecutor {
             case "amount":
                 TrackedPlayer tracked1 = CratesPlugin.getInstance().getTimeTracker().findTrackedPlayer(player.getUniqueId());
                 if (tracked1 != null) {
-                    SillyCratesMessage.send("&eYou currently have " + tracked1.getAvailableCrates() + " crates available.", player);
+                    if (tracked1.getAvailableCrates() == 1) {
+                        SillyCratesMessage.send("&eYou currently have " + tracked1.getAvailableCrates() + " &c&l/crate &eavailable.", player);
+                    } else {
+                        SillyCratesMessage.send("&eYou currently have " + tracked1.getAvailableCrates() + " &c&l/crates &eavailable.", player);
+                    }
+
                 } else {
                     SillyCratesMessage.send("&cAn issue occurred whilst retrieving your player file, please relog.", player);
                 }
@@ -57,7 +62,7 @@ public class CrateCommand implements CommandExecutor {
 
     public void commandHelp(final Player player) {
         if (player.isOp()) {
-            SillyCratesMessage.sendWithoutHeader("&cUsage: /crate(s) <about/amount/reload/unlock>", player);
+            SillyCratesMessage.sendWithoutHeader("&cUsage: /crate(s) <about/amount/override/reload/unlock>", player);
         } else {
             SillyCratesMessage.sendWithoutHeader("&cUsage: /crate(s) <about/amount/unlock>", player);
         }
