@@ -1,20 +1,14 @@
 package us.mcmagic.sillycrates.util;
 
-import net.minecraft.server.v1_8_R3.EntityInsentient;
 import net.minecraft.server.v1_8_R3.EntityTypes;
 import us.mcmagic.sillycrates.loot.entity.CrateEntityType;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 public class NMSUtil {
 
-    private NMSUtil() {
-
-    }
+    private NMSUtil() { }
 
     public static void registerEntity(CrateEntityType type) {
         registerEntity(type.getName(), type.getId(), type.getEntityClass());

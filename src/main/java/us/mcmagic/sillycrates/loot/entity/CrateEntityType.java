@@ -8,6 +8,7 @@ import java.lang.reflect.InvocationTargetException;
 
 public enum CrateEntityType {
 
+    CRATE_GIANT("Crate Giant", 53, CrateGiant.class),
     CRATE_ZOMBIE("Crate Zombie", 54, CrateZombie.class);
 
     private String name;

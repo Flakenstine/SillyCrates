@@ -1,6 +1,5 @@
 package us.mcmagic.sillycrates.util;
 
-import jdk.nashorn.internal.runtime.regexp.joni.Config;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -19,6 +18,7 @@ public class FileUtil {
 
     public static final File configFile = new File("plugins/SillyCrates/config.yml");
     public static final File playersFile = new File("plugins/SillyCrates/players.yml");
+    public static final File schematics = new File("plugins/SillyCrates/structures");
     public static YamlConfiguration configYaml = YamlConfiguration.loadConfiguration(configFile);
     public static YamlConfiguration playerYaml = YamlConfiguration.loadConfiguration(playersFile);
 
@@ -26,6 +26,9 @@ public class FileUtil {
         try {
             if (!configFile.getParentFile().exists()) {
                 configFile.getParentFile().mkdir();
+            }
+            if (!schematics.exists()) {
+                schematics.mkdir();
             }
             if (!configFile.createNewFile()) {
                 return;

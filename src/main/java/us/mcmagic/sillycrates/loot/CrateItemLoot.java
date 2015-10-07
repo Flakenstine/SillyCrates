@@ -10,11 +10,12 @@ import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.FireworkMeta;
+import org.bukkit.potion.Potion;
 import us.mcmagic.sillycrates.CratesManager;
 import us.mcmagic.sillycrates.CratesPlugin;
 import us.mcmagic.sillycrates.util.SillyCratesMessage;
 
-public class CrateItemLoot implements ICrateItem {
+public class CrateItemLoot implements ICrateRandom {
 
     private ItemStack stack;
     private Material material;
@@ -57,11 +58,6 @@ public class CrateItemLoot implements ICrateItem {
         setupItemStack();
     }
 
-    @Override
-    public int generateAmount(int min, int max) {
-        return random.nextInt(max-min+1) + min;
-    }
-
     private void setupItemStack() {
         //TODO Potions
         if (stack != null) {
@@ -87,7 +83,7 @@ public class CrateItemLoot implements ICrateItem {
     }
 
     public ItemStack getStack() {
-        this.stackAmount = generateAmount(min, max);
+//        this.stackAmount = generateAmount(min, max);
         stack.setAmount(stackAmount);
         return stack;
     }

@@ -1,5 +1,7 @@
 package us.mcmagic.sillycrates;
 
+import com.sk89q.worldedit.WorldEdit;
+import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -9,6 +11,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 import us.mcmagic.sillycrates.loot.entity.CrateEntityFactory;
+import us.mcmagic.sillycrates.loot.entity.CrateEntityListener;
 import us.mcmagic.sillycrates.loot.entity.CrateEntityType;
 import us.mcmagic.sillycrates.time.PlayerListener;
 import us.mcmagic.sillycrates.time.TimeTracker;
@@ -23,6 +26,7 @@ import java.util.logging.Logger;
 public final class CratesPlugin extends JavaPlugin implements Filter {
 
     private static CratesPlugin instance;
+    private WorldEditPlugin worldEdit;
     private CratesManager manager;
     private CrateEntityFactory entityFactory;
     private static ItemStack crate;
@@ -52,30 +56,46 @@ public final class CratesPlugin extends JavaPlugin implements Filter {
 
     @Override
     public void onEnable() {
+        /* –––––––––––––––––––––––––– */
         instance = this;
         FileUtil.setupConfig();
         FileUtil.setupPlayers();
+        try {
+            worldEdit = (WorldEditPlugin) getServer().getPluginManager().getPlugin("WorldEdit");
+        } catch (Exception e) {
+            getLogger().info("WorldEdit not found! Disabling plugin.");
+            Bukkit.getPluginManager().disablePlugin(this);
+        }
+        /* –––––––––––––––––––––––––– */
         manager = new CratesManager();
         manager.populate();
         entityFactory = new CrateEntityFactory();
         tracker = new TimeTracker();
-        getCommand("crate").setExecutor(new CrateCommand());
-        getCommand("crates").setExecutor(new CrateCommand());
         crate = registerItem();
+        /* –––––––––––––––––––––––––– */
+        registerCommands();
         registerEntities();
         registerListeners();
         loadConfiguration();
+        /* –––––––––––––––––––––––––– */
         for (String s : consoleOutput) {
             log.info(s);
         }
     }
 
+    private void registerCommands() {
+        getCommand("crate").setExecutor(new CrateCommand());
+        getCommand("crates").setExecutor(new CrateCommand());
+    }
+
     private void registerEntities() {
+        NMSUtil.registerEntity(CrateEntityType.CRATE_GIANT);
         NMSUtil.registerEntity(CrateEntityType.CRATE_ZOMBIE);
     }
 
     private void registerListeners() {
         Bukkit.getPluginManager().registerEvents(new PlayerListener(), this);
+        Bukkit.getPluginManager().registerEvents(new CrateEntityListener(), this);
     }
 
     @Override
@@ -107,6 +127,10 @@ public final class CratesPlugin extends JavaPlugin implements Filter {
 
     public TimeTracker getTimeTracker() {
         return tracker;
+    }
+
+    public WorldEditPlugin getWorldEdit() {
+        return worldEdit;
     }
 
     public void reload() {

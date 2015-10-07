@@ -554,7 +554,7 @@ public enum ParticleEffect {
     }
 
     public static ParticleEffect getRandomEffect() {
-        int id = RandomPlus.between(0, 41);
+        int id = CrateRandomUtil.between(0, 41);
         return ParticleEffect.fromId(id);
     }
 

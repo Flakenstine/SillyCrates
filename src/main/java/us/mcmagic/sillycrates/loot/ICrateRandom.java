@@ -1,10 +1,12 @@
 package us.mcmagic.sillycrates.loot;
 
+import org.bukkit.Location;
+
 import java.security.SecureRandom;
 
 public interface ICrateRandom {
     SecureRandom random = new SecureRandom();
     Rarity getRarity();
-    int generateAmount(int min, int max);
+    void play(Location location);
 }
 
